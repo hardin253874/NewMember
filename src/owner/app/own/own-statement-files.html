@@ -1,0 +1,30 @@
+<section class="container-fluid" data-ng-controller="ownerStatementFilesController as vm">
+    <h1>Statement {{vm.id}} </h1>
+
+    <div class=" row">
+        <div class="col-xs-8">
+            <!--Left panel-->
+
+            <h2>Documents</h2>
+
+            <div>
+                <ul class="unstyled">
+                    <li ng-if="!vm.Documents" class="text-muted">No documents</li>
+                    <li class="row" ng-repeat="document in vm.Documents">
+                        <!--{{document | json}}-->
+
+                        <div class="col-xs-6" ng-if="document.FolioId">
+                            <a href="{{vm.serverUrl}}/api/portal/own/{{document.FolioId}}/documents/{{document.Id}}">{{document.FileName }}</a>
+                        </div>
+                        <div class="col-xs-6" ng-if="!document.FolioId">
+                            <a href="{{vm.serverUrl}}/api/portal/own/{{vm.fileId}}/documents/{{document.Id}}">{{document.FileName }}</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-xs-4">
+
+        </div>
+    </div>
+</section>

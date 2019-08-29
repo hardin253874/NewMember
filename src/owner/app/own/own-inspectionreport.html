@@ -1,0 +1,99 @@
+<section class="container-fluid" data-ng-controller="ownerInspectionReportController as vm">
+    <div style="max-width:1000px;">
+        <div class="">
+            <p class="v-space-12"></p>
+            <a ng-hide="vm.hideBackButton" class="btn btn-sm btn-light"
+               href="#/property/{{vm.FolioId}}?OwnershipId={{vm.ownershipId}}">
+                <i class="icon-pm-thin-arrow-left"></i>
+                Back to property
+            </a>
+        </div>
+        <ng-include src="'app/own/card-header.html'"></ng-include>
+        <h3>{{vm.InspectionReport.Type}}
+            <span class="darkgrey">-
+                    {{vm.InspectionReport.Summary}}
+                </span>
+        </h3>
+        <div class="row">
+            <div class="col-sm-4 col-sm-push-8">
+                <h4>Inspect date</h4>
+
+                <p>
+                    {{vm.InspectionReport.DueDate | date}} </p>
+
+                <div ng-if="vm.InspectionReport.FollowUpActions.length"
+                     class="border-top-dotted-dark mgt-24 padding-vbase">
+                    <h4>
+                        Suggested follow-up actions </h4>
+
+                    <div class="message-schedule-panel" ng-repeat="action in vm.InspectionReport.FollowUpActions track by $index">
+                        {{action}}
+                    </div>
+                </div>
+                <div ng-if="vm.InspectionReport.AreasToHide.length" class="border-top-dotted-dark padding-vbase">
+                    <h4>Other inspected areas</h4>
+
+                    <div class=" ">
+                        <div class="small muted">
+                            The following areas were inspected, but do not require any attention from you:
+                        </div>
+                        <div class="mgt-3">
+                            <span ng-repeat="area in vm.InspectionReport.AreasToHide">
+                            {{area.Name}}<span ng-if="$index < vm.InspectionReport.AreasToHide.length - 1">, </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="border-top-dotted-dark padding-vbase">
+                    <h4>Documents</h4>
+                    <div class=" ">
+                        <ul class="unstyled">
+                            <li class="mgt-3" ng-repeat="document in vm.showedDocuments">
+                                <div class="clearfix position-r message-schedule-panel">
+                                    <div>
+                                        <a href="" class="hidden-wrapper-link" ng-click="vm.showDocumentInLightbox(document)"></a>
+                                        <div class="pull-right">
+                                            {{document.CreatedOn | date}}
+                                        </div>
+                                        <i ng-if="!document.isPhoto"
+                                           class="icon-file icon-large pull-left text-info"></i>
+                                        <i ng-if="document.isPhoto"
+                                           class="icon-picture icon-large pull-left text-info"></i>
+                                        <span>
+                                        {{document.FileName }}
+                                    </span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8 col-sm-pull-4">
+                <h4>General comments</h4>
+
+                <div ng-if="vm.InspectionReport.Notes" style="white-space: pre-wrap; white-space: -moz-pre-wrap; white-space: -pre-wrap; white-space: -o-pre-wrap; word-wrap: break-word;">{{vm.InspectionReport.Notes}}</div>
+                <div ng-if="!vm.InspectionReport.Notes" class="muted">None</div>
+                <h3 class="">Areas of note</h3>
+
+                <div ng-repeat="area in vm.InspectionReport.AreasToShow"
+                     class="mgt-16 panel panel-default padding-vbase padding-hbase " style=" vertical-align: top;">
+                    <div class="panel-body ">
+                        <h4 class="no-margin-top darkgrey">{{area.Name}}</h4>
+
+                        <p ng-if="area.Note"
+                           style="white-space: pre-wrap; white-space: -moz-pre-wrap; white-space: -pre-wrap; white-space: -o-pre-wrap; word-wrap: break-word;">{{area.Note}}</p>
+
+                        <div ng-if="area.Photos && area.Photos.length > 0" class=" padding-vbase" style="max-width:600px;">
+                            <pm-inspection-photos-owner list="area.Photos"
+                                                        folio-id="vm.FolioId"></pm-inspection-photos-owner>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="">
+            <p class="v-space-24"></p>
+        </div>
+    </div>
+</section>

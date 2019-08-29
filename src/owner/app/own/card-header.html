@@ -1,0 +1,71 @@
+<div class="clearfix">
+
+    <div class="pull-right">
+        <div class="clearfix">
+            <div class="pull-left padding-hbase">
+                <img style="max-width:150px; max-height:60px; " ng-show="vm.Agent.LogoDocumentUrl" ng-src="{{vm.Agent.LogoDocumentUrl}}" >
+            </div>
+            <div class="pull-right text-right small">
+                <div>
+                    <div ng-if="!vm.Agent.LogoIncludesName"><strong>{{vm.Agent.AgentName}}</strong></div>
+                    <div ng-if="!vm.Agent.LogoIncludesAddress">
+                        {{vm.Agent.PostalAddressText}}
+                    </div>
+                    <div>
+                        {{vm.Agent.PhoneText}}
+                    </div>
+                    <div>
+                        {{vm.Agent.Email}}
+                    </div>
+                    <div>
+                        <a href="http://{{vm.Agent.AgentWebsite}}" target="_blank">
+                            {{vm.Agent.AgentWebsite}}
+                        </a>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <h1 class="pull-left no-underline no-margin-bottom">
+                <span>
+                    {{vm.folio.Lot.Address.Text}}
+                </span>
+
+        <div class="" style="font-size:1em; line-height: 0.9em">
+            <div class="small disp-ib">
+                <span class="muted mgr-4">
+                   {{vm.folio.Lot.PropertyType}}
+                </span>
+
+                <span class="disp-ib no-wrap mgr-4">
+                      <i class="icon-pm-bed icon-large"></i>
+                  <span class="muted ">
+                      {{vm.folio.Lot.Bedrooms}}
+                  </span>
+                </span>
+                <span class="disp-ib no-wrap mgr-4">
+                    <i class="icon-pm-bath icon-large"></i>
+                    <span class="muted ">
+                        {{vm.folio.Lot.Bathrooms}}
+                    </span>
+
+                </span>
+                <span class="disp-ib no-wrap mgr-4">
+                   <i class="icon-pm-car icon-large "></i>
+                   <span class="muted ">
+                    {{vm.folio.Lot.CarSpaces}}
+                  </span>
+              </span>
+            </div>
+        </div>
+
+
+
+    </h1>
+
+</div>
+
+<hr class="dotted no-margin-top"/>

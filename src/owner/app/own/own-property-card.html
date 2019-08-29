@@ -1,0 +1,145 @@
+<section class="container-fluid" data-ng-controller="ownerPropertyCardController as vm">
+    <div style="max-width:1000px;">
+        <div class="">
+            <p class="v-space-12"></p>
+            <a ng-hide="vm.hideBackButton" class="btn btn-sm btn-light" href="#/own/list">
+                <i class="icon-pm-thin-arrow-left"></i>
+                Back to My Portfolio
+            </a>
+        </div>
+        <ng-include src="'app/own/card-header.html'"></ng-include>
+        <div class="no-border alert alert-info" ng-if="!vm.isActiveOwner">
+            <p class="info-text">
+                This property has a new owner. Please contact your property manager for any historical information or documents.
+            </p>
+        </div>
+        <div class=" row">
+            <div class="col-sm-6 clearfix" ng-if="vm.isActiveOwner">
+                <div class="">
+                    <h3 class="no-margin-top">Property Details</h3>
+                    <div class="padding-hbase" ng-if="!vm.folio.Lot.TenantContactReference">
+                        <small>No tenant</small>
+                    </div>
+                    <div class="padding-hbase" ng-if="vm.folio.Lot.TenantContactReference">
+                        <p>
+                            <small>Your tenant</small>
+                            {{vm.folio.Lot.TenantContactReference}}
+                             <span class="no-wrap">
+                                <small>pays</small>
+                                 {{vm.folio.Lot.TenantRentAmount | currency}} {{vm.folio.Lot.TenantRentPeriod}}
+                            </span>
+                            <span class="no-wrap">
+                                <small>and is paid up to</small>
+                                {{vm.folio.Lot.TenantEffectivePaidTo | date}}
+                            </span>
+                        </p>
+                        <p>
+                            <span class="no-wrap"><small>Agreement from
+                            </small> {{vm.folio.Lot.TenantAgreementStart| date}} </span>
+                            <span class="no-wrap" ng-if="vm.folio.Lot.TenantAgreementEnd"> <small>to</small> {{vm.folio.Lot.TenantAgreementEnd| date}} </span>
+                        </p>
+                        <p>
+                            <span class="no-wrap"><small>Moved in</small> {{vm.folio.Lot.TenantTenancyStart| date}} </span>
+                            <span class="no-wrap" ng-if="vm.folio.Lot.TenantTenancyEnd"><small>moved out</small> {{vm.folio.Lot.TenantTenancyEnd| date}} </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div ng-class="{'col-sm-6': vm.isActiveOwner, 'col-sm-12' : !vm.isActiveOwner }">
+                <div ng-if="vm.hidePhotos ">
+                    <!--<pm-map-small longitude="vm.folio.Lot.Address.Longitude" latitude="vm.folio.Lot.Address.Latitude"-->
+                                  <!--address="vm.folio.Lot.Address"></pm-map-small>-->
+                    <!--<div style="background-image: url('{{vm.bingMapUrl}}'); background-position: center; height: 300px;"></div>-->
+                </div>
+                <div ng-show="!vm.hidePhotos">
+                    <pm-photos-owner type="'Lot'" id="vm.id" ownership-id="vm.ownershipId" is-empty="vm.noPhotos" area="'Lot'"></pm-photos-owner>
+                </div>
+            </div>
+        </div>
+
+        <div class="mgt-24 "  ng-if="vm.isActiveOwner">
+            <h3 class="underline no-margin-bottom">Current Balance (all properties)</h3>
+
+            <div class="">
+                <div class="folio-summary folio-summary-owner"
+                    ng-class="{'folio-summary-box-width-6': vm.folio.UnclearedBalance > 0}">
+                    <div class="folio-summary-box">
+                        <div class="folio-summary-label">Opening balance</div>
+                        <div class="folio-summary-value">
+                            <span>{{vm.folio.OpeningBalance | currency}}</span>
+                        </div>
+                    </div>
+                    <div class="folio-summary-box income">
+                        <div class="folio-summary-label">Money In</div>
+                        <div class="folio-summary-value">
+                            <span>{{vm.folio.Credit | currency}}</span>
+                        </div>
+                    </div>
+                    <div class="folio-summary-box expense">
+                        <div class="folio-summary-label">Money Out</div>
+                        <div class="folio-summary-value">
+                            <span>{{vm.folio.Debit | currency}}</span>
+                        </div>
+                    </div>
+                    <div class="folio-summary-box expense">
+                        <div class="folio-summary-label">Bills Outstanding</div>
+                        <div class="folio-summary-value">
+                            <span>{{(vm.folio.OutstandingBills) | currency}}</span>
+                        </div>
+                    </div>
+                    <div class="folio-summary-box net-balance"
+                        ng-if="vm.folio.UnclearedBalance > 0">
+                        <div class="folio-summary-label">Uncleared Funds</div>
+                        <div class="folio-summary-value">
+                            <span>{{vm.folio.UnclearedBalance | currency}}</span>
+                        </div>
+                    </div>
+                    <div class="folio-summary-box net-balance">
+                        <div class="folio-summary-label">Net Balance</div>
+                        <div class="folio-summary-value">
+                            <span>{{vm.folio.Payout | currency}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div ng-if="vm.folio.WitholdAmount" class="text-right">
+                    You have a nominated withold amount of {{vm.folio.WitholdAmount | currency}}
+                </div>
+            </div>
+        </div>
+        <p class="v-space-24">&nbsp;</p>
+
+        <div class="" ng-if="vm.isActiveOwner">
+            <div ng-if="vm.IncomeExpense">
+                <h3 class="underline no-margin-bottom">Financial Activity (all properties)
+                    <a href="#/property/{{vm.id}}/financials?OwnershipId={{vm.ownershipId}}" class="btn btn-light btn-sm mgl-4">more details
+                        <i class="icon-pm-thin-arrow-right"></i>
+                    </a>
+                </h3>
+                <div ng-if="vm.IncomeExpense.list.length === 0" class="padding-hbase padding-vbase text-muted">No
+                                                                                                               activity
+                                                                                                               in the
+                                                                                                               last 12
+                                                                                                               months
+                </div>
+                <div ng-if="vm.IncomeExpense.chart " class="border-solid padding-hbase padding-vbase clearfix"
+                     style="border-top:0;">
+                    <div class="col-md-12 col-sm-12 mgb-12">
+                        <h5>Monthly Activity Last 12 months</h5>
+                        <pm-barchart-cashflow values="vm.IncomeExpense.chart.values"
+                                              labels="vm.IncomeExpense.chart.labels"></pm-barchart-cashflow>
+                    </div>
+                </div>
+                <p class="v-space-24"></p>
+            </div>
+            <p class="v-space-24"></p>
+            <!-- Financial Summary /////////////////////////////////////////////////  -->
+            <!-- <div ng-include src="'/app/own/financialsummary.html'" ng-cloak></div> -->
+            <!-- Jobs /////////////////////////////////////////////////  -->
+            <div ng-include src="'app/own/jobs.html'" ng-cloak ng-if="vm.isActiveOwner"></div>
+            <!-- Inspections /////////////////////////////////////////////////  -->
+            <div ng-include src="'app/own/inspections.html'" ng-cloak ng-if="vm.isActiveOwner"></div>
+            <!-- Documents /////////////////////////////////////////////////  -->
+            <div ng-include src="'app/own/documents.html'" ng-cloak ng-if="vm.isActiveOwner"></div>
+        </div>
+    </div>
+</section>

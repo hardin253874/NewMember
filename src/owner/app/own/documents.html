@@ -1,0 +1,64 @@
+<div ng-controller="ownerPropertyCardDocumentsController as vmDocuments">
+    <div ng-if="!!vmDocuments.Documents">
+        <h3 class="underline">Documents</h3>
+
+        <div class="padding-hbase">
+            <p ng-if="vmDocuments.Documents.length > 0" class="text-muted">
+                Click a document row to show that document and any attached files.
+                <a name="lastStatement"></a>
+            </p>
+            <ul class="unstyled  ">
+                <li ng-if="vmDocuments.Documents.length === 0" class="mgt-6 text-muted">No documents</li>
+                <!--<pre>{{vmDocuments | json}}</pre>-->
+                <li class="mgt-6" ng-repeat="document in vmDocuments.showedDocuments">
+                    <div class="clearfix position-r message-schedule-panel">
+                        <div ng-if="document.StatementNumber" class="">
+                            <!--This is a statement -->
+                            <a href="" class="hidden-wrapper-link" ng-click="vmDocuments.showStatementInLightbox(document)"></a>
+                            <div class="pull-right">
+                                {{document.StatementDate | date}}
+                            </div>
+                            <i class="icon-file icon-large pull-left text-info"></i>
+                            <div>
+                                Statement <strong>#{{document.StatementNumber}}</strong>
+                            </div>
+                            <div style="padding-left:16px">
+                                <small class="disp-ib  no-wrap" style="width: 300px; ">
+                                    Income of
+                                    <span class="darkgrey"> {{document.Status.Income | currency}}</span>
+                                    less expenses of
+                                    <span class="text-danger "> {{document.Status.Expense | currency}}</span>. &nbsp;
+                                </small>
+                                <div class="disp-ib  no-wrap">
+                                    <small class="text-success">
+                                        Amount disbursed
+                                    </small>
+                                    <strong class="text-success no-wrap">{{document.Status.Payment | currency}}</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-if="!document.StatementNumber">
+                            <a href="" class="hidden-wrapper-link" ng-click="vmDocuments.showDocumentInLightbox(document)"></a>
+                            <div class="pull-right">
+                                {{document.CreatedOn | date}}
+                            </div>
+                            <i ng-if="!document.isPhoto"
+                               class="icon-file icon-large pull-left text-info"></i>
+                            <i ng-if="document.isPhoto"
+                               class="icon-picture icon-large pull-left text-info"></i>
+                                    <span>
+                                        {{document.FileName }}
+                                    </span>
+                        </div>
+                    </div>
+                </li>
+                <li ng-if="vmDocuments.showThisMany < vmDocuments.Documents.length" class="text-right">
+                    <a href="" class="" ng-click="vmDocuments.showMoreDocuments()">
+                        Show  more documents
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+</div>

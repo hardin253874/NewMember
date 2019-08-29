@@ -1,0 +1,115 @@
+<section class="container-fluid" data-ng-controller="ownerFinancialsController as vm">
+    <div style="max-width:1000px;">
+        <div class="">
+            <p class="v-space-12"></p>
+            <a ng-hide="vm.hideBackButton" class="btn btn-sm btn-light"
+               href="#/property/{{vm.FolioId}}?OwnershipId={{vm.ownershipId}}">
+                <i class="icon-pm-thin-arrow-left"></i>
+                Back to property
+            </a>
+            <p class="v-space-12"></p>
+        </div>
+        <div style="border-bottom: 1px dotted #d2d2d2; padding-bottom: 4px;" class="clearfix">
+            <h3>Financial Activity</h3>
+        </div>
+        <div class="padding-hbase">
+            <div class="row">
+                <p></p>
+                <div class="col-xs-4">
+                    <pm-lookup source="vm.ownerships" model="vm.showOwnershipId" placeholder="All Properties"></pm-lookup>
+                </div>
+                <div class="pull-right clearfix">
+                    <small>Showing activity from &nbsp;</small> <pm-datepicker model="vm.periodStartDate" start-date="{{vm.periodMinDate}}" end-date="{{vm.periodMaxDate}}"></pm-datepicker> <small>&nbsp; until &nbsp;</small> <pm-datepicker model="vm.periodEndDate"  start-date="{{vm.periodMinDate}}" end-date="{{vm.periodMaxDate}}"></pm-datepicker>
+                </div>
+            </div>
+            <div class="row">
+                <p></p>
+                <div ng-if="vm.IncomeExpense.list.length === 0" class="padding-hbase padding-vbase text-muted">No activity during this period</div>
+
+                <div ng-if="vm.IncomeExpense.chart " class="border-solid padding-hbase padding-vbase clearfix">
+
+                    <div class="col-xs-8">
+                        <h5>Monthly Activity</h5>
+                    <pm-barchart-cashflow values="vm.IncomeExpense.chart.values"
+                                                labels="vm.IncomeExpense.chart.labels"></pm-barchart-cashflow>
+                     </div>
+
+                    <div class="col-xs-4">
+                        <div class="row" ng-if="vm.debitTotal > 0">
+                            <h5>Expenses Breakdown</h5>
+                            <pm-piechart-small values="vm.expenseValues" colours="vm.colours.expenses"></pm-piechart-small>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <p class="v-space-24"></p>
+
+            <ul class="unstyled">
+                <li class="clearfix padding-vbase"
+                    style="border-bottom: 1px dotted #dddddd;">
+                    <div class="col-xs-12">
+                        <div class="col-xs-2">
+                            <h5>Month</h5>
+                        </div>
+                        <div class="col-xs-4">
+                            <h5>Chart Account Name</h5>
+                        </div>
+                        <div class="col-xs-2 text-right">
+                            <h5>Tax Included</h5>
+                        </div>
+                        <div class="col-xs-2 text-right">
+                            <h5>Debit</h5>
+                        </div>
+                        <div class="col-xs-2 text-right">
+                            <h5>Credit</h5>
+                        </div>
+                    </div>
+                </li>
+                <li ng-repeat="chartAccount in vm.chartAccounts" class="clearfix padding-vbase">
+                    <div class="col-xs-12">
+                        <div class="col-xs-2">
+                            {{vm.displayMonth(chartAccount)}}
+                        </div>
+                        <div class="col-xs-4">
+                            {{chartAccount.ChartAccountName}}
+                        </div>
+                        <div class="col-xs-2 text-right">
+                            <span ng-if="chartAccount.TaxIncluded > 0">
+                                {{chartAccount.TaxIncluded | currency }}
+                            </span>
+                        </div>
+                        <div class="col-xs-2 text-right">
+                            <span ng-if="chartAccount.Debit > 0">
+                                {{chartAccount.Debit | currency }}
+                            </span>
+                        </div>
+                        <div class="col-xs-2 text-right">
+                            <span ng-if="chartAccount.Credit > 0">
+                                {{chartAccount.Credit | currency }}
+                            </span>
+                        </div>
+                    </div>
+                </li>
+                <li class="clearfix padding-vbase"
+                    style="border-top: 1px dotted #dddddd;">
+                    <div class="col-xs-12">
+                        <div class="col-xs-6 text-right">
+                            <h5>Totals</h5>
+                        </div>
+                        <div class="col-xs-2 text-right">
+                            <strong>{{vm.taxTotal | currency }}</strong>
+                        </div>
+                        <div class="col-xs-2 text-right">
+                            <strong>{{ vm.debitTotal | currency }}</strong>
+                        </div>
+                        <div class="col-xs-2 text-right">
+                            <strong>{{ vm.creditTotal | currency }}</strong>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>

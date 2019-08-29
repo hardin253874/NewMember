@@ -1,0 +1,177 @@
+<section class="container-fluid" data-ng-controller="ownerPropertyListController as vm">
+    <h1> My Portfolio </h1>
+    <div >
+
+        <p class="v-space-48">You have
+            <strong>{{vm.properties}}</strong>
+             {{vm.properties == 1? 'property' : 'properties'}}
+                              in your portfolio.</p>
+
+        <div class="row" >
+            <div class="col-xs-12 col-lg-10" ng-repeat="folio in vm.folios">
+                <div class="row clearfix">
+                    <div class=" col-xs-12 col-sm-6">
+                        <h3 ng-if="(folio.Lots | filter: {IsActive : true}).length > 0">{{ folio.AgentName + ' (' + folio.Code + ')' }}</h3>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-4 col-sm-4" ng-if="folio.Payout">
+                        <h4 style="padding-top:6px;" class="darkgrey">
+                            Net balance: {{vm.currencySymbol}} {{folio.Payout | number : 2}}
+                        </h4>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 text-center" ng-if="vm.displayDisburseDate(folio)">
+                        <h4 style="padding-top:6px;"  class="darkgrey">
+                            Next payment: {{folio.NextDisburseDate | daysFromNow}}
+                        </h4>
+                    </div>
+                    <div ng-if="folio.LastStatementDate" class="pull-right text-center col-xs-4 col-sm-4">
+                        <h4 style="padding-top:6px;"  class="darkgrey">
+                            Last statement: {{folio.LastStatementDate | date: 'longDate'}}
+                        </h4>
+                    </div>
+                </div>
+
+                <ul class="unstyled ">
+                    <li class="position-r container-fluid" ng-repeat="property in folio.Lots | filter: {IsActive : true}">
+                        <a href="/owner/#/property/{{folio.FolioId}}?OwnershipId={{property.OwnershipId}}" class="hidden-wrapper-link"></a>
+                        <div class="row clearfix" ng-class="!property.IsActive ? 'alert alert-finished' : 'message-schedule-panel'">
+                            <div class=" col-xs-12 col-sm-6 clearfix">
+
+                                <i ng-if="!property.PhotoUrl" class=" icon-home bigIcon-with-shadow PrimaryBlue pull-left "></i>
+
+                                <div ng-if="property.PhotoUrl" class="pull-left"
+                                    style="width:130px; height: 100px; margin-left: -20px;margin-right: 15px;
+                                     background-size: cover; background-position: center;"
+                                    ng-style="{'background-image':  'url({{PM_SERVERROOT + property.PhotoUrl}})'} "></div>
+
+
+                                <div class="disp-ib">
+                                    <h4 class="darkgrey mgt-24" style=" height:22px;">
+                                        <div class="" style="padding-top:7px;">
+                                            {{vm.showAddress(property)}}
+                                        </div>
+                                    </h4>
+                                    <div class="small">
+                                        <span class="muted">Tenant</span>
+                                        {{property.TenantContactReference}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-4 col-sm-2 " ng-hide="true">
+                                <h4 class="darkgrey mgt-24" style="font-size:1.75em; height:22px;">
+                                    <div class="no-wrap">
+                                        <sup class="" style="margin-right:-0.25em;">{{vm.currencySymbol}}</sup>
+                                        {{folio.Payout | number : 2}}
+                                    </div>
+                                </h4>
+                                <div class="small">
+                                    <span class="muted mgl-12">Net balance</span>
+                                </div>
+                            </div>
+                            <div ng-if="vm.displayDisburseDate(folio)"  ng-hide="true"
+                                    class="col-xs-4 col-sm-2 text-center">
+                                <h4 class="darkgrey mgt-24 " style="height:22px;">
+                                    <div class=" no-wrap" style="padding-top:7px;">
+
+                                        {{folio.NextDisburseDate | daysFromNow}}
+                                    </div>
+                                </h4>
+                                <div class="small">
+                                    <span class="muted">Next payment</span>
+                                </div>
+                            </div>
+                            <div ng-if="folio.LastStatementDate"  ng-hide="true"
+                                    class="pull-right text-center col-xs-4 col-sm-2">
+                                <div style="margin-top:18px;">
+                                    <i class="icon-file muted  "></i>
+                                </div>
+                                <div class="small">
+                                    {{folio.LastStatementDate | date: 'longDate'}}
+                                </div>
+                                <div class="small muted">
+                                    Last statement
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-xs-12 col-lg-10" ng-if="vm.archivedProperties.length > 0">
+                <h3>Archived {{vm.archivedProperties.length === 1? 'Property' : 'Properties'}}</h3>
+                <ul class="unstyled ">
+                    <li class="position-r container-fluid" ng-repeat="archivedProperty in vm.archivedProperties">
+                        <a href="/owner/#/property/{{archivedProperty.FolioId}}?OwnershipId={{archivedProperty.OwnershipId}}" class="hidden-wrapper-link"></a>
+                        <div class="row clearfix alert alert-finished">
+                            <div class=" col-xs-12 col-sm-6 clearfix">
+
+                                <i ng-if="!archivedProperty.PhotoUrl" class=" icon-home bigIcon-with-shadow PrimaryBlue pull-left "></i>
+
+                                <div ng-if="archivedProperty.PhotoUrl" class="pull-left"
+                                     style="width:130px; height: 100px; margin-left: -20px;margin-right: 15px;
+                                     background-size: cover; background-position: center;"
+                                     ng-style="{'background-image':  'url({{PM_SERVERROOT + archivedProperty.PhotoUrl}})'} "></div>
+
+
+                                <div class="disp-ib">
+                                    <h4 class="darkgrey mgt-24" style=" height:22px;">
+                                        <div class="" style="padding-top:7px;">
+                                            {{vm.showAddress(archivedProperty)}}
+                                        </div>
+                                    </h4>
+                                    <div class="small">
+                                        <span class="muted" ng-if="archivedProperty.TenantContactReference">Tenant</span>
+                                        {{archivedProperty.TenantContactReference}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-4 col-sm-2 ">
+                                <h4 class="darkgrey mgt-24" style="font-size:1.75em; height:22px;">
+                                    <div class="no-wrap">
+
+                                    </div>
+                                </h4>
+                                <div class="small">
+
+                                </div>
+                            </div>
+                            <div class="col-xs-4 col-sm-2 text-center">
+                                <h4 class="darkgrey mgt-24 " style="height:22px;">
+                                    <div class=" no-wrap" style="padding-top:7px;">
+
+
+                                    </div>
+                                </h4>
+                                <div class="small">
+
+                                </div>
+                            </div>
+                            <div ng-if="archivedProperty.LastStatementDate"
+                                 class="pull-right text-center col-xs-4 col-sm-2">
+                                <div style="margin-top:18px;">
+                                    <i class="icon-file muted  "></i>
+                                </div>
+                                <div class="small">
+                                    {{archivedProperty.LastStatementDate | date: 'longDate'}}
+                                </div>
+                                <div class="small muted">
+                                    Last statement
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row" style="margin-left:5px !important;" ng-if="vm.tenantFolios.length > 0">
+          <p class="v-space-24">You are renting
+            <strong>{{vm.rentProperties}}</strong>
+            {{vm.rentProperties <= 1? 'property' : 'properties'}}  <a class="btn btn-sm btn-light" href="/">Tenant Access <i class="icon-pm-thin-arrow-right"></i></a>
+          </p>
+        </div>
+    </div>
+
+</section>

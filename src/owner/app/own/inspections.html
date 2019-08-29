@@ -1,0 +1,47 @@
+<div class="" ng-controller="ownerPropertyCardInspectionsController as vmInspections">
+    <div ng-if="!!vmInspections.Inspections">
+        <h3 class="underline">Inspections</h3>
+        <div class="padding-hbase">
+            <ul class="unstyled">
+                <li ng-if="vmInspections.Inspections.length === 0" class="text-muted">No inspections</li>
+                <li ng-repeat="inspection in vmInspections.Inspections.first(vmInspections.showThisMany)">
+                    <div ng-if="inspection.IsPublished"
+                         class="clearfix mgb-6 pm-panel position-r cursor-pointer">
+                        <!--Clickable-->
+                        <a class="hidden-wrapper-link"
+                           href="#/property/{{vm.id}}/inspectionreport/{{inspection.Id}}?OwnershipId={{vm.ownershipId}}"></a>
+                        <div class="pull-right text-right">
+                            <span class="text-info mgr-12"><i class="icon-file"></i> Report available</span>
+                            <small>{{inspection.DateToShowMsg}}</small>
+                            {{inspection.DateToShow | date}}
+                        </div>
+                        <div>
+                            <div>
+                                {{inspection.Type}} - {{inspection.Summary}}
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-if="!inspection.ClosedOn && !inspection.IsPublished"
+                         class="clearfix mgb-6 pm-panel inActive position-r">
+                        <!--Not clickable-->
+                        <div class="pull-right text-right">
+                            <small>{{inspection.DateToShowMsg}}</small>
+                            {{inspection.DateToShow | date}}
+                        </div>
+                        <div>
+                            <div>
+                                {{inspection.Summary}}
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li ng-if="vmInspections.showThisMany < vmInspections.Inspections.length" class="text-right">
+                    <a href="" class="" ng-click="vmInspections.showThisMany = vmInspections.showThisMany + 3;">
+                        Show more inspections
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <p class="v-space-24"></p>
+    </div>
+</div>

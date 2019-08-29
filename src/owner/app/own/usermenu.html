@@ -1,0 +1,27 @@
+<ul class="navbar-nav nav navbar-right" data-ng-controller="ownerUserMenuController as vm">
+    <li class="">
+        <a data-toggle="dropdown" class="dropdown-toggle disp-ib no-padding" style="cursor:pointer; margin: 3px 0 0 5px">
+          <pmc-member-avatar member-name="vm.memberName" member-id="vm.memberId"></pmc-member-avatar>
+        </a>
+        <ul class="user-menu  dropdown-menu dropdown-yellow dropdown-caret dropdown-closer">
+            <li ng-if="vm.AccessTenant">
+              <a href="/">
+                <i class="icon-group"></i>
+                Tenant access
+              </a>
+            </li>
+            <li>
+                <a href="/member/profile">
+                    <i class="icon-user"></i>
+                    Profile
+                </a>
+            </li>
+            <li>
+                <a href="/sign-in">
+                    <i class="icon-off"></i>
+                    Sign out
+                </a>
+            </li>
+        </ul>
+    </li>
+</ul>

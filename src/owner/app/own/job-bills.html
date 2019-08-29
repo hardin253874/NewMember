@@ -1,0 +1,40 @@
+<div ng-controller="ownerJobCardBillsController as vmJobBills">
+    <div ng-if="!!vmJobBills.bills">
+        <h3 class="underline">Bills</h3>
+
+        <div class="padding-hbase">
+            <p ng-if="vmJobBills.bills.length > 0" class="text-muted">
+                Click a row with <i class="icon-file icon-large text-info"></i> to show that document
+            </p>
+            <ul class="unstyled  ">
+                <li ng-if="vmJobBills.bills.length === 0" class="mgt-6 text-muted">No attachments</li>
+                <li class="mgt-6" ng-repeat="document in vmJobBills.bills">
+                    <div class="clearfix position-r message-schedule-panel pm-panel" ng-class="{'inActive': !document.Id, 'cursor-pointer': !!document.Id}">
+                        <div ng-if="document.BillNumber" >
+                            <!--This is a bill attachment -->
+                            <a href="" ng-if="document.Id" class="hidden-wrapper-link" ng-click="vmJobBills.showDocumentInLightbox(document)"></a>
+                            <div class="pull-right">
+                                {{document.BillDueDate | date}}
+                            </div>
+                            <div>
+                                <i class="icon-file icon-large pull-left text-info" ng-show="document.Id"></i>
+                                <label style="width:13px;" ng-show="!document.Id"></label>
+                                Bill
+                                <strong>#{{document.BillNumber}}</strong>
+                                <!--&nbsp; <small>Date </small>-->
+                                <!--<strong class="no-wrap">{{document.BillCreatedOn | date}}</strong>-->
+                                &nbsp; <small>Amount</small>
+                                <strong class="no-wrap">{{document.BillAmount | currency}}</strong>
+                            </div>
+                            <div style="padding-left:17px;">
+                                <small>Detail </small>
+                                {{document.BillDetail}}
+                            </div>
+                        </div>
+                   </div>
+              </li>
+          </ul>
+      </div>
+  </div>
+
+</div>

@@ -1,0 +1,37 @@
+<div ng-controller="ownerJobCardQuotesController as vmJobQuotes">
+    <div ng-if="!!vmJobQuotes.quotes">
+        <h3 class="underline">Quotes</h3>
+
+        <div class="padding-hbase">
+            <p ng-if="vmJobQuotes.quotes.length > 0" class="text-muted">
+                Click a row with <i class="icon-file icon-large text-info"></i> to show that document
+            </p>
+            <ul class="unstyled  ">
+                <li ng-if="vmJobQuotes.quotes.length  === 0" class="mgt-6 text-muted">No quotes</li>
+                <li class="mgt-6" ng-repeat="quote in vmJobQuotes.quotes">
+                    <div class="clearfix position-r message-schedule-panel pm-panel" ng-class="{'inActive': !quote.Id, 'cursor-pointer': !!quote.Id}">
+                        <div>
+                            <!--This is a bill attachment -->
+                            <a href="" ng-if="quote.Id" class="hidden-wrapper-link" ng-click="vmJobQuotes.showDocumentInLightbox(quote)"></a>
+                            <div class="pull-right">
+                                {{quote.QuotedOn | date}}
+                            </div>
+                            <div>
+                                <i class="icon-file icon-large pull-left text-info" ng-show="quote.Id"></i>
+                                <label style="width:13px;" ng-show="!quote.Id"></label>
+                                {{quote.SupplierReference}}
+                                &nbsp; <small ng-if="quote.Amount && quote.Amount > 0">Amount</small>
+                                <strong class="no-wrap" ng-if="quote.Amount && quote.Amount > 0">{{quote.Amount | currency}}</strong>
+                            </div>
+                            <div style="padding-left:17px;" ng-if="quote.Reference && quote.Reference.length > 0">
+                                <small>Reference </small>
+                                {{quote.Reference}}
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>

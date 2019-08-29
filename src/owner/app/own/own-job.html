@@ -1,0 +1,71 @@
+<section class="container-fluid" data-ng-controller="ownerJobController as vm">
+    <div style="max-width:1000px;">
+        <div class="">
+            <p class="v-space-12"></p>
+            <a ng-hide="vm.hideBackButton" class="btn btn-sm btn-light"
+               href="#/property/{{vm.FolioId}}?OwnershipId={{vm.ownershipId}}">
+                <i class="icon-pm-thin-arrow-left"></i>
+                Back to property
+            </a>
+
+        </div>
+        <ng-include src="'app/own/card-header.html'"></ng-include>
+        <h3 class="">
+            Job - <span class="darkgrey">{{vm.dto.Summary}}</span>
+        </h3>
+
+        <div class="row">
+            <div class="col-sm-4 col-sm-push-8">
+
+                <p ng-if="vm.dto.ClosedOn" class="alert alert-finished">
+                    <i class="icon-large icon-alert-finished mgr-12"></i>
+                    This job was closed on {{vm.dto.ClosedOn | dateTime}}
+                </p>
+                <div class="row">
+                    <div class="col-xs-6 col-sm-12">
+                        <h4>Reference</h4>
+                        <p>Job{{vm.dto.DisplayNumber}}</p>
+
+                        <h4>Date reported</h4>
+                        <p> {{vm.dto.CreatedOn | date}} </p>
+
+                        <h4>Due date</h4>
+                        <p>{{vm.dto.DueDate | date}} </p>
+
+                    </div>
+                    <div class="col-xs-6 col-sm-12">
+                        <div ng-show="vm.dto.AssignedSupplierReference">
+                            <h4>Assigned to </h4>
+                            <p>{{vm.dto.AssignedSupplierReference}} </p>
+                        </div>
+
+                        <h4>Reported by</h4>
+                        <p> {{vm.dto.ReportedContactType}} </p>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8 col-sm-pull-4">
+                <hr class="visible-xs"/>
+               <div class="" ng-if="vm.dto.Description">
+                    <h3>Description</h3>
+                    <p style="white-space: pre-wrap;">{{vm.dto.Description}}</p>
+                 </div>
+
+                <p class="v-space-16"></p>
+
+                <div ng-hide="vm.noPhotos" class="text-center">
+                    <pm-inspection-photos-owner list="vm.photos"
+                                                folio-id="vm.FolioId"></pm-inspection-photos-owner>
+                </div>
+
+                <div ng-include src="'app/own/job-quotes.html'" ng-cloak></div>
+                <div ng-include src="'app/own/job-bills.html'" ng-cloak></div>
+            </div>
+        </div>
+
+        <div class="">
+            <p class="v-space-24"></p>
+        </div>
+    </div>
+</section>
