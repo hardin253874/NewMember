@@ -1,0 +1,79 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "project": {
+    "version": "1.0.0-beta.32.3",
+    "name": "tenant-pme"
+  },
+  "apps": [
+    {
+      "root": "src",
+      "outDir": "dist",
+      "assets": [
+        "assets/**/*",
+        "favicon.ico",
+        "owner/index.html",
+        "owner/models.js",
+        "owner/scripts.js",
+        "owner/app/*",
+        "owner/app/**/*.html",
+        "owner/app/**/*.js",
+        "owner/app/content/css/*",
+        "owner/app/content/font/**/*",
+        "owner/app/content/images/**/*",
+        "owner/app/content/svg/**/*",
+        "owner/app/dist/**/*",
+        "owner/app/lib/**/*",
+        "owner/i18n/*",
+        "version.html",
+        "terms.html",
+        "robots.txt"
+      ],
+      "index": "index.html",
+      "main": "main.ts",
+      "polyfills": "polyfills.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.json",
+      "prefix": "app",
+      "styles": [
+        "../node_modules/ng2-toasty/style.css",
+        "styles.scss",
+        "assets/css/toasty-message.css"
+      ],
+      "scripts": [],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "uat": "environments/environment.uat.ts",
+        "stage": "environments/environment.stage.ts",
+        "stage-blue": "environments/environment.stage-blue.ts",
+        "prod": "environments/environment.prod.ts",
+        "prod-blue": "environments/environment.prod-blue.ts",
+        "master": "environments/environment.master.ts"
+      }
+    }
+  ],
+  "e2e": {
+    "protractor": {
+      "config": "./protractor.conf.js"
+    }
+  },
+  "lint": [
+    {
+      "files": "src/**/*.ts",
+      "project": "src/tsconfig.json"
+    },
+    {
+      "files": "e2e/**/*.ts",
+      "project": "e2e/tsconfig.json"
+    }
+  ],
+  "test": {
+    "karma": {
+      "config": "./karma.conf.js"
+    }
+  },
+  "defaults": {
+    "styleExt": "scss",
+    "component": {}
+  }
+}
