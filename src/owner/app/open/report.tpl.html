@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <title>PropertyMe</title>
+    <meta name="description" content="Report viewer page"/>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+    <meta http-equiv="Expires" content="0"/>
+    <link href="/app/content/css/font-awesome.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/app/content/css/initial.css"/>
+    <link rel="stylesheet" href="/app/content/css/styles.css"/>
+    <style>
+        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+            display: none !important;
+        }
+    </style>
+</head>
+<body class="reports-frame" ng-controller="reportController">
+<div id="report-preview-toolbar" class=" ng-cloak">
+    <div class="clearfix">
+        <div class="pull-left mgr-6">
+            <a href='#' class="btn  btn-default pull-left btn-small" ng-hide="isFramed" ng-click="close()">
+                <i class="icon icon-remove icon-large no-margin"></i>
+                <span class="hidden-sm hidden-xs">Close</span>
+            </a>
+        </div>
+        <div class="text-right pull-right">
+            <a href='' class="btn  btn-default btn-small" ng-click="print()">
+                <i class="icon-print icon-large no-margin"
+                   ng-class=" {'icon-spinner icon-spin': currentlyLoading === 'print', 'icon-rotate-180': currentlyLoading === 'print'}"></i>
+                <span class="hidden-xs">Print</span>
+                <i class="icon-ok" ng-if="checkHasPrinted()"></i>
+
+            </a>
+            <a href='' class="btn  btn-default btn-small" ng-click="download()">
+                <i class="icon-download-alt icon-large no-margin"
+                   ng-class=" {'icon-spinner icon-spin': currentlyLoading === 'PDF', 'icon-rotate-180': currentlyLoading === 'PDF' }"></i>
+                <span class="hidden-xs">PDF</span>
+                <i class="icon-ok" ng-if="checkHasDownloaded()"></i>
+            </a>
+        </div>
+        <div >
+            <div ng-if="pages" class=" pull-left ">
+                <ul class="pagination pagination-sm pull-left" style="margin-top:1px;">
+
+                    <li ng-repeat-start="p in pagesToShow" ng-hide="p.gap" ng-class="{'active': p == thisPage}">
+                        <a href=""
+                           ng-click="changePage(p)">
+                        <span ng-class="{'small muted': p.hasPrinted || p.hasDownloaded}">
+                             {{p.startAt + 1}}-<span class="hidden-xs">{{p.endAt + 1}}</span>
+                        </span>
+                        </a>
+                    </li>
+                    <div ng-show="p.gap" class="pull-left " ng-repeat-end style="width:4px; height:1px"></div>
+                </ul>
+                <div class="pull-left small padding-vbase mgl-6 hidden-xs white" >
+                    {{ids.length}} in total
+                </div>
+                <div class="pull-left padding-vbase mgl-6">
+                    <div class="progress" style="width:120px;">
+                        <div class="progress-bar"
+                             ng-class="{'progress-bar-success': countUntouchedPages() == 0 }"
+                             style="width: {{ (pages.length - countUntouchedPages()) / pages.length * 100}}%; min-width:2em;">
+                            {{ (pages.length - countUntouchedPages()) / pages.length * 100 | number: 0}}%
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pull-right text-right">
+
+    </div>
+</div>
+<div id="report-preview-container">
+    <div id="report-preview-body">
+        <div id="report-loader" class="text-info" ng-hide="!isIFrameLoading">
+            <h5>
+                <i class="icon-refresh icon-spin"></i>
+                Loading...
+            </h5>
+            <p>Your report is loading; depending on its size it may take a few moments.<BR> You are free to keep using
+               PropertyMe in another browser tab.</p>
+        </div>
+        <div id="report-iframe-container" ng-hide="isIFrameLoading">
+            <iframe id="printFrame" name="printFrame" ng-src="{{iframeSrc}}"></iframe>
+        </div>
+    </div>
+</div>
+<!-- build:js /app/dist/scripts/report.js -->
+<script type="text/javascript" src="../lib/jquery-2.0.3.js"></script>
+<script type="text/javascript" src='../js-extensions.js'></script>
+<script type="text/javascript" src='../jquery-extensions.js'></script>
+<script type="text/javascript" src='../lib/angular.js'></script>
+<script type="text/javascript" src='../lib/bootstrap.js'></script>
+<script type="text/javascript" src='../lib/toastr.js'></script>
+<!-- endbuild -->
+<script type="text/javascript">
+    (function ($) {
+        'use strict';
+
+
+        var app = angular.module('app', []);
+        app.controller('reportController', ['$q', '$scope', reportController]);
+
+        function reportController($q, $scope) {
+            var server = makeServer();
+            var vm = $scope;
+            var $iframe = $('#printFrame');
+            var iframeWindow = window.frames['printFrame'];
+            var iframeContentWindow = iframeWindow.contentWindow || iframeWindow; //different browsers handle this differently, if contentWindow is available, we want it
+            var params = {};
+            vm.isPrinting = false;
+            vm.currentlyLoading = true;
+            vm.isIFrameLoading = false;
+            vm.close = function() {
+                window.close();
+            };
+            vm.print = print;
+            vm.download = download;
+            vm.getPdf = getPdf;
+            vm.changePage = changePage;
+            vm.checkHasPrinted = checkHasPrinted;
+            vm.checkHasDownloaded = checkHasDownloaded;
+            vm.countUntouchedPages = countUntouchedPages;
+            vm.pagesToShow = [];
+            vm.ids = [];
+            vm.shownIds = [];
+            vm.isPaged = false;
+
+
+            readParams();
+            if(vm.onlyPdf) {
+                print();
+            }else{
+                configIframe();
+            }
+
+            if (params.batchSize > 0) {
+                countPages();
+                changePage(vm.pages[0]);
+            } else {
+                setIframe(params.initialReportUrl);
+            }
+            ////////////
+
+            function readParams() {
+                var raw = getUrlVars();
+                params.initialReportUrl = decodeURIComponent(raw.r);
+                params.batchSize = Number(decodeURIComponent(raw.b));
+                params.offset = Number(decodeURIComponent(raw.o));
+                vm.syncGetPdf = raw.UsePDfWriter;
+
+                vm.onlyPdf=raw.onlyPdf;
+
+                if (params.batchSize > 0) {
+                    vm.isPaged = true;
+                    params.messages = {
+                        url: params.initialReportUrl.split('?MessageIds=')[0],
+                        ids: params.initialReportUrl.split('?MessageIds=')[1].split(','),
+                        qsParam: '?MessageIds='
+                    };
+                    vm.ids = params.messages.ids;
+                }
+
+            }
+
+            function configIframe() {
+                $iframe.on('load', function () {
+                    vm.isIFrameLoading = false;
+                    vm.$apply();
+                });
+            }
+
+            function setIframe(url) {
+                vm.isIFrameLoading = true;
+                vm.iframeSrc = url;
+            }
+
+            function buildPagedUrl() {
+                return params.messages.url + params.messages.qsParam +
+                        vm.shownIds.join(',');
+            }
+
+            function changePage(page) {
+                vm.thisPage = page;
+                vm.shownIds = [];
+                for (var i = page.startAt; i <= page.endAt; i++) {
+                    if (vm.ids[i]) vm.shownIds.push(vm.ids[i]);
+                }
+                setIframe(buildPagedUrl());
+                setPagesToShow();
+            }
+
+            function countPages() {
+                   vm.pages = [];
+                //make page offset values
+                for (var p = 0; p * params.batchSize < vm.ids.length; p++) {
+                    vm.pages.push({
+                      // label: p+1,
+                      // value: p,
+                        startAt: p * params.batchSize,
+                        endAt: Math.min((p + 1) * params.batchSize - 1, vm.ids.length-1)
+                    });
+                }
+            }
+
+            function countUntouchedPages() {
+                return vm.pages.countIf(function(p) { return !p.hasPrinted && !p.hasDownloaded });
+            }
+
+            function setPagesToShow() {
+
+                var count = 5,
+                    i = vm.pages.indexOf(vm.thisPage);
+
+                if (count >= vm.pages.length) {
+                    vm.pagesToShow = vm.pages;
+                    return;
+                }
+
+                var begin = Math.max(i - Math.floor(count/2), 0),
+                    end = Math.min(begin + count, vm.pages.length-1);
+
+                //special cases for near the start and end of the list
+                if (i < Math.ceil(count/2)) {
+                    begin = 0;
+                    end = count;
+                } else if (i >= vm.pages.length - Math.ceil(count/2)) {
+                    begin = vm.pages.length - count;
+                    end = vm.pages.length;
+                }
+
+                var nearbys = vm.pages.slice(begin, end); //slice will NOT include the element at array[end]
+
+                //make sure the first and last pages are shown
+                var f = vm.pages[0], l = vm.pages.lastElement();
+                if (!nearbys.contains(f)) {
+                    nearbys.unshift({gap:true});
+                    nearbys.unshift(f);
+                }
+                if (!nearbys.contains(l)) {
+                    nearbys.push({gap:true});
+                    nearbys.push(l);
+                }
+
+                vm.pagesToShow =  nearbys;
+
+            }
+
+            function print() {
+                vm.currentlyLoading = 'print';
+                iframeContentWindow.location = 'about:blank';
+               if (getCurrentPDFUrl()) {
+                    setIframeAndPrint();
+               } else {
+                    getPdf(setIframeAndPrint);
+               }
+
+
+                function setIframeAndPrint() {
+                    iframeContentWindow.location = getCurrentPDFUrl() + '&IsPrinting=true';
+
+                    $('#printFrame').one('load', function () {
+                        vm.$apply();
+                        if(!vm.onlyPdf) {
+                            iframeContentWindow.print();
+                        }else{
+                            vm.onlyPdf = false; // only for first time.
+                        }
+                        if (vm.isPaged) {
+                            vm.thisPage.hasPrinted = true;
+                        } else {
+                            vm.hasPrinted = true;
+                        }
+                        vm.$apply();
+                    });
+                    vm.currentlyLoading = '';
+                    vm.isIFrameLoading = false;
+                }
+            }
+
+            function getCurrentPDFUrl() {
+                if(vm.syncGetPdf){
+                    return getPDFUrlForPdfWriter();
+                }
+
+                if (vm.isPaged) {
+                    return vm.thisPage.pdfUrl;
+                } else {
+                    return vm.pdfUrl;
+                }
+            }
+
+            function getPDFUrlForPdfWriter(){
+                var reportPath = params.initialReportUrl;
+//                if(reportPath.indexOf('?') == -1){
+//                    reportPath = reportPath + '?IsPrinting=true';
+//                }else{
+//                    reportPath = reportPath + '&IsPrinting=true';
+//                }
+
+                var reportPath = reportPath + '&UsePDfWriter=true';
+
+                return reportPath ;
+            }
+
+            function download() {
+                vm.currentlyLoading = 'PDF';
+
+                if (getCurrentPDFUrl()) {
+                   setIframeAndDownload();
+                } else {
+                    getPdf(setIframeAndDownload);
+                }
+
+                function setIframeAndDownload() {
+                    iframeContentWindow.location = getCurrentPDFUrl() + '&IsPrinting=false';
+                    vm.currentlyLoading = '';
+                    if (vm.isPaged) {
+                        vm.thisPage.hasDownloaded = true;
+                    } else {
+                        vm.hasDownloaded = true;
+                    }
+                }
+            }
+
+            function checkHasPrinted() {
+                if (vm.isPaged) {
+                    return vm.thisPage.hasPrinted;
+                } else {
+                    return vm.hasPrinted;
+                }
+            }
+
+            function checkHasDownloaded() {
+                if (vm.isPaged) {
+                    return vm.thisPage.hasDownloaded;
+                } else {
+                    return vm.hasDownloaded;
+                }
+            }
+
+            function getReportPath () {
+                //set the url of the iframe to only include the ids in the current batch
+                if (!vm.isPaged) {
+                    return params.initialReportUrl;
+                } else {
+
+                    return buildPagedUrl();
+                }
+            }
+
+            function getPdf(callback) {
+                var reportPath = getReportPath();
+                if(reportPath.indexOf('?') == -1){
+                    reportPath = reportPath + '?IsPrinting=true';
+                }else{
+                    reportPath = reportPath + '&IsPrinting=true';
+                }
+
+                vm.dto = {
+                    Name: vm.reportName || 'report',
+                    ReportPath: reportPath,
+                    Lifetime: 'Temporary'
+                };
+
+                server.post('/api/reports/create', vm.dto).done(function (data) {
+                    if (data && data.ResponseStatus && data.ResponseStatus.ErrorCode === 'posted') {
+                        server.pollPostingStatus(data.TrackingIds, complete);
+                    } else {
+                        complete(data);
+                    }
+                });
+
+                function complete(data) {
+                    if (data.IsCompleted  && data.IsSuccessful && data.ResponseStatus.Message) {
+
+                        if (vm.isPaged) {
+                            vm.thisPage.pdfUrl = '/api/reports/getfile?FileKey=' + data.ResponseStatus.Message;
+                        } else {
+                            vm.pdfUrl = '/api/reports/getfile?FileKey=' + data.ResponseStatus.Message;
+                        }
+
+
+                        callback();
+                    } else {
+                        alert('Please try it again after few minutes.');
+                    }
+                }
+
+
+
+            }
+
+
+            function makeServer() {
+                function errorHandle(data, status) {
+                    if (status === 401) {
+                        alert('401 error');
+                    }
+                }
+
+                function getFn(url) {
+                    var newUrl = getUrl(url);
+                    var promise = $.get(newUrl).fail(errorHandle);
+                    return promise;
+                }
+
+                function postAsyncFn(url, obj) {
+                    var newUrl = getUrl(url);
+                    // Wrap the polling in a standard promise
+                    var deferred = $q.defer();
+
+                    $.post(newUrl, obj).fail(errorHandle).done(function (response) {
+                        if (response.ResponseStatus && response.ResponseStatus.ErrorCode === 'posted') {
+                            pollPostingStatus(response.TrackingIds, deferred);
+                        } else {
+                            deferred.resolve(response);
+                        }
+                    });
+
+                    // Fake a httpPromise success
+                    var promise = deferred.promise;
+                    promise.done = function (callback) {
+                        promise.then(callback, errorHandle);
+                    };
+                    return promise;
+                }
+
+                function getUrl(url) {
+                    var newUrl = url;
+                    if (!newUrl.match('^/')) {
+                        newUrl = '/api/' + newUrl;
+                    }
+                    if (newUrl.indexOf('format=json') < 0) {
+                        if (newUrl.indexOf('?') < 0) {
+                            newUrl += '?format=json';
+                        } else {
+                            newUrl += '&format=json';
+                        }
+                    }
+
+                    return newUrl;
+                }
+
+                function pollPostingStatus(trackingIds, doneAction) {
+                    var self = vm;
+                    trackingIds.forEach(function (trackingId) {
+                        var pollUrl = '/api/financial/postingStatus/pop/' + trackingId;
+                        server.get(pollUrl).done(function (data) {
+                            if (data.ResponseStatus && data.ResponseStatus.ErrorCode === 'posted') {
+
+                                // Call again in 1 second
+                                setTimeout(function () {
+                                    pollPostingStatus([trackingId], doneAction);
+                                }, 1000);
+                            } else {
+                                if (typeof doneAction.resolve == 'function') {
+                                    doneAction.resolve(data);
+                                } else {
+                                    doneAction(data);
+                                }
+
+                            }
+                        }).fail(function (event, jqXHR, ajaxSettings, thrownError) {
+
+                            // Call again in 3 seconds
+                            setTimeout(function () {
+                                self.pollPostingStatus([trackingId], doneAction);
+                            }, 3000);
+                        });
+                    });
+                }
+
+                return {
+                    get: getFn,
+                    post: postAsyncFn,
+                    pollPostingStatus: pollPostingStatus
+                };
+            }
+
+        }
+
+
+        function getUrlVars() {
+            var vars = [], hash, slicePoint;
+            slicePoint = window.location.href.indexOf('?');
+            if (slicePoint <= 0) {
+                slicePoint = window.location.href.indexOf('#');
+            }
+            var hashes = window.location.href.slice(slicePoint + 1).split('&');
+            for (var i = 0; i < hashes.length; i++) {
+                hash = hashes[i].split('=');
+                vars.push(hash[0]);
+                vars[hash[0]] = hash[1];
+            }
+            return vars;
+        }
+
+    })(jQuery);
+</script>
+</body>
+</html>
