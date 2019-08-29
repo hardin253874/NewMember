@@ -1,0 +1,180 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'src/assets/scss/icons';
+@import 'src/assets/scss/toolkit';
+@import 'src/assets/scss/spinner';
+@import 'src/assets/scss/variables';
+@import 'src/assets/scss/theme-variables';
+@import 'src/assets/scss/retina';
+// Prevent auto zoom in iOS 10
+@media screen and (-webkit-min-device-pixel-ratio:0) and (max-device-width:1024px) {
+  select,
+  textarea,
+  input {
+    font-size: 16px !important;
+  }
+}
+
+// theme creates padding for mid size desktop
+@media (min-width: 992px) {
+  .container {
+    width: 100vw;
+    max-width: 100%;
+  }
+}
+
+.img-thumb {
+  max-width: 150px;
+}
+
+.bg-white {
+  background-color: $white-color;
+}
+
+.bg-primary {
+  background-color: $brand-color !important;
+}
+
+.card-block {
+  padding: 1rem;
+}
+
+.text-comment {
+  font-size: smaller;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+}
+
+.text-smaller {
+  font-size: smaller;
+}
+.text-small {
+  font-size: small;
+}
+.text-large {
+  font-size: large;
+}
+.text-larger {
+  font-size: larger;
+}
+.text-brand {
+  color: $brand-color;
+}
+
+.dark-modal .modal-content {
+  background-color: $gray-dark;
+  color: white;
+
+  .modal-title {
+    color: $brand-warning;
+  }
+  .modal-header {
+    border-bottom-color: $gray;
+  }
+  .modal-footer {
+    border-top: none;
+  }
+  .close {
+    color: white;
+  }
+}
+
+.icon-lg {
+  font-size: 1.33333333em;
+  line-height: 0.75em;
+  vertical-align: -15%;
+}
+
+.icon-2x {
+  font-size: 2em;
+}
+
+.icon-3x {
+  font-size: 3em;
+}
+
+.icon-4x {
+  font-size: 3em;
+}
+
+.icon-5x {
+  font-size: 5em;
+}
+
+.initials {
+  position: relative;
+  top: 50*0.25;
+  font-size: 50*0.5;
+  line-height: 50*0.5;
+  color: $white-color;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: bold;
+}
+
+@mixin avatar($size) {
+  display: inline-block;
+  width: $size;
+  height: $size;
+  background-color: $brand-info;
+  text-align: center;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+
+  .initials {
+    position: relative;
+    top: $size*0.25;
+    font-size: $size*0.5;
+    line-height: $size*0.5;
+    color: $white-color;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: bold;
+  }
+}
+
+.avatar-circle      { @include avatar(100px); }
+.avatar-circle-sm   { @include avatar(50px); }
+.avatar-circle-lg   { @include avatar(250px); }
+
+.display-5 {
+    font-size: 2rem;
+    font-weight: 300;
+    line-height: 1.1;
+}
+
+.display-6 {
+  font-size: 1.8rem;
+  font-weight: 300;
+  line-height: 1.1;
+}
+
+%label-based {
+    display: inline-block;
+}
+
+.label {
+  @extend %label-based;
+  width: 8rem;
+}
+
+.label-small {
+    @extend %label-based;
+    width: 6rem;
+}
+
+.card-header {
+  background-color: $white-color;
+}
+
+.navbar-nav {
+  .nav-link {
+    margin: 0 1rem 0 1rem;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    font-weight: 400;
+    max-width: 15rem;
+    @include hover-focus {
+      color: $navbar-inverse-bg;
+      background-color: rgba($navbar-inverse-color, 0.5);
+    }
+
+  }
+}
