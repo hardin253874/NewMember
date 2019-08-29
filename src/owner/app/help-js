@@ -1,0 +1,43 @@
+(function () {
+    'use strict';
+
+    window.PM_Help = {
+        //Property / Lot
+        'lot-edit-reference': null,
+        'lot-edit-manager': 'Choose the right PM from the list',
+        'lot-edit-address': 'The physical street address',
+        'lot-edit-location': 'Latitutde and Longitude for mapping',
+        'lot-edit-type': null,
+        'lot-edit-bedsbathscars': 'Used to create default respection reports, as well as for portal uploads',
+        'lot-edit-description': 'Used on portal uploads',
+        'lot-edit-keynumber': 'Number for key',
+        'lot-edit-inspection-frequency': 'How often',
+        'lot-edit-inspection-due': 'Inspection due',
+        'lot-edit-notes': 'Notes notes and notes',
+
+        //Contact
+        'contact-edit-reference': 'fdsds',
+        'contact-edit-supplierexistingcontact': 'dsfdfssd',
+        'contact-edit-supplierreference': 'fdsds',
+        'contact-edit-supplierabn': 'dsddsds',
+        'contact-edit-supplierwebsite': 'dsfds',
+        'contact-edit-supplierchartaccount': 'dsfds',
+        'contact-edit-notes': 'null',
+
+        //Person
+        'person-edit-firstname': 'null',
+        'person-edit-lastname': 'null',
+        'person-edit-company': 'null',
+        'person-edit-mobile': 'null',
+        'person-edit-workphone': 'null',
+        'person-edit-homephone': 'null',
+        'person-edit-email': 'null',
+        'person-edit-postaladdress': 'null',
+        'person-edit-physicaladdress': 'null',
+        'person-edit-commpreference': 'null',
+
+
+
+    };
+
+})();
