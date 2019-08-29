@@ -1,0 +1,21 @@
+@import "../../assets/scss/variables";
+@import "../../assets/scss/settings";
+.card-header {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.card-profile-img {
+  margin-top: 0;
+  width: 100px;
+  height: 100px;
+}
+
+.agent-logo {
+    max-width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+

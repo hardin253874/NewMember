@@ -1,0 +1,25 @@
+<div *ngIf="isLoaded">
+  <div class="list-group mb-2" *ngIf="mergedActivityFeeds && agentInfo">
+
+    <div class="list-item-card" *ngFor="let tenantFeedInfo of mergedActivityFeeds; let i=index;"
+      [ngClass]="{ 'pt-2': i > 0 }"
+      >
+      <div *ngIf="tenantFeedInfo" [ngSwitch]="tenantFeedInfo.FeedType" >
+        <app-activity-feed-job *ngSwitchCase="'JobInfo'" [feed]="tenantFeedInfo" showcallout="true"></app-activity-feed-job>
+        <app-activity-feed-doc *ngSwitchCase="'DocumentInfo'" [feed]="tenantFeedInfo"></app-activity-feed-doc>
+        <app-activity-feed-payment *ngSwitchCase="'PaymentInfo'" [feed]="tenantFeedInfo"></app-activity-feed-payment>
+        <app-activity-feed-chat *ngSwitchCase="'ChatInfo'" [feed]="tenantFeedInfo"></app-activity-feed-chat>
+        <app-activity-feed-inspection *ngSwitchCase="'InspectionInfo'" [feed]="tenantFeedInfo"></app-activity-feed-inspection>
+        
+        <app-activity-feed-move-out *ngSwitchCase="'RentMoveOutInfo'" [feed]="tenantFeedInfo"></app-activity-feed-move-out>
+        <app-activity-feed-agreement-end *ngSwitchCase="'RentAgreementEndInfo'" [feed]="tenantFeedInfo"></app-activity-feed-agreement-end>
+      </div>
+    </div>
+
+    <div *ngIf="listInfo.TotalRecords > activityFeeds.length" class="pt-2">
+      <button  (click) = "showMore()" class="action-button show-more"> Show More </button>
+
+      <button (click) = "showAll()" class="action-button show-more"> Show All ({{listInfo.TotalRecords}}) </button>
+    </div>
+  </div>
+</div>

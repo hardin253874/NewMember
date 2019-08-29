@@ -1,0 +1,55 @@
+<div class="card card-profile mb-4" *ngIf="agentInfo">
+
+  <div class="card-header" *ngIf="agentInfo && agentInfo.LogoDocumentStorageId" style="background-color: transparent;height:auto; max-height:150px;">
+    <img class="agent-logo" src="{{'/files/photos/agency/' + agentInfo.LogoDocumentStorageId + '?size=s'  | serverUrl }}" style="max-height: 130px;">
+  </div>
+
+  <div class="pt-4 text-center pb-3" style="border-bottom: 1px solid rgba(0, 0, 0, 0.125);" *ngIf="agentInfo && !agentInfo.LogoDocumentStorageId">
+      <h6  calss="my-auto" >{{agentInfo.Reference}}</h6>
+  </div>
+
+
+  <div class="text-center pt-2" *ngIf="agentInfo.MemberId">
+    <a href="#" *ngIf="agentInfo && agentInfo.MemberId">
+      <img class="rounded-circle" src="{{ avatarUrl + '&v=' + version | serverUrl }}">
+    </a>
+
+    <h6 class="card-title mt-2">
+      {{agentInfo.ManagerFirstName}} {{agentInfo.ManagerLastName}}
+    </h6>
+    <div class="card-title card-name">{{agentInfo.JobTitle}}</div>
+
+    <div class="card-body text-left card-small-text">
+      <ul class="list-unstyled list-spaced">
+        <li *ngIf="agentInfo.ManagerWorkPhone"><span class="text-muted icon icon-phone mr-3"></span> {{agentInfo.ManagerWorkPhone}}</li>
+        <li *ngIf="agentInfo.ManagerCellPhone"><span class="text-muted icon icon-mobile mr-3"></span> {{agentInfo.ManagerCellPhone}}</li>
+        <li *ngIf="agentDisplay"><span class="text-muted icon icon-email mr-3 flex-wrap"></span> <a href="mailto:{{agentInfo.ManagerEmail}}" target="_blank">{{agentDisplay}}</a> </li>
+        <li *ngIf="agentInfo.CompanyName"><span class="text-muted icon icon-link mr-3 flex-wrap"></span>
+          <a href="{{agentInfo.WebsiteUrl}}" target="_blank" *ngIf="agentInfo.WebsiteUrl">{{agentInfo.CompanyName}}</a>
+          <span *ngIf="!agentInfo.WebsiteUrl">{{agentInfo.CompanyName}}</span>
+        </li>
+        <li *ngIf="agentInfo.PhysicalAddressText || agentInfo.PostalAddressText"><span class="text-muted icon icon-location-pin mr-3"></span> {{!agentInfo.PhysicalAddressText ? agentInfo.PostalAddressText : agentInfo.PhysicalAddressText}}</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="text-center pt-2" *ngIf="!agentInfo.MemberId">
+        <h6 class="card-title mt-2">
+            {{agentInfo.CompanyName}}
+        </h6>
+
+        <div class="card-body text-left card-small-text">
+            <ul class="list-unstyled list-spaced">
+                <li *ngIf="agentInfo.WorkPhone"><span class="text-muted icon icon-phone mr-3"></span> {{agentInfo.WorkPhone}}</li>
+                <li *ngIf="agentInfo.CellPhone"><span class="text-muted icon icon-mobile mr-3"></span> {{agentInfo.CellPhone}}</li>
+                <li *ngIf="agentDisplay"><span class="text-muted icon icon-email mr-3 flex-wrap"></span> <a href="mailto:{{agentInfo.Email}}" target="_blank">{{agentDisplay}}</a> </li>
+                <li *ngIf="agentInfo.CompanyName"><span class="text-muted icon icon-link mr-3 flex-wrap"></span>
+                    <a href="{{agentInfo.WebsiteUrl}}" target="_blank" *ngIf="agentInfo.WebsiteUrl">{{agentInfo.CompanyName}}</a>
+                    <span *ngIf="!agentInfo.WebsiteUrl">{{agentInfo.CompanyName}}</span>
+                </li>
+                <li *ngIf="agentInfo.PhysicalAddressText || agentInfo.PostalAddressText"><span class="text-muted icon icon-location-pin mr-3"></span> {{!agentInfo.PhysicalAddressText ? agentInfo.PostalAddressText : agentInfo.PhysicalAddressText}}</li>
+            </ul>
+        </div>
+  </div>
+</div>
