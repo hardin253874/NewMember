@@ -1,0 +1,85 @@
+
+<div class="container-fluid ">
+  <div class="row pt-5">
+
+    <div class="col pt-5 justify-content-center align-items-center">
+       <form class="mx-auto text-center app-login-form"
+          name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+
+          <div *ngIf="portfolioCode">
+            <strong class="text-info" *ngIf="loading">
+              <i class="icon icon-light-up fast-right-spinner"></i>
+            </strong>
+            <h2 id="agent-name" style="display: inline-block; margin-bottom: 4px;" *ngIf="!loading && portfolio && portfolio.PrintNameNextToLogo && portfolio.CompanyName">{{portfolio.CompanyName}}</h2>
+            <img class="agent-logo pb-2" style="max-width:280px;" *ngIf="!noLogo" src="{{'files/logos/' +  portfolioCode + '?size=s'  | serverUrl }}">
+          </div>
+          <div *ngIf="!portfolioCode">
+            <img class="non-retina" src="assets/img/brand.png" style="height:100px" alt="PropertyMe">
+            <img class="retina" src="assets/img/brand-big.png" style="height:100px" alt="PropertyMe">
+          </div>
+          <div class="form-group" [ngClass]="{ 'has-danger' : f.submitted && !username.valid }">
+          <input type="text" class="form-control" name="username" [(ngModel)]="model.username" #username="ngModel" required  placeholder="Email"/>
+          <div *ngIf="f.submitted && !username.valid" class="form-control-feedback">Email is required</div>
+          </div>
+          <div class="form-group mb-3" [ngClass]="{ 'has-danger' : f.submitted && !password.valid }">
+          <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" required placeholder="Password" />
+          <div *ngIf="f.submitted && !password.valid" class="form-control-feedback">Password is required</div>
+        </div>
+           <app-loading *ngIf="loading"></app-loading>
+          <ngb-alert *ngIf="alert" [type]="alert.type" (close)="alert = null">
+            <div  class="card-text card-smaller-text  text-left">
+                <i class="icon-alert-error"></i> {{alert.message}}
+            </div>
+        </ngb-alert>
+
+          <ngb-alert *ngIf="alert" [type]="message.type" (close)="alert = null">
+            <div class="card-text card-smaller-text  text-left" style="display: flex;">
+                <span><i class="icon-alert-info"></i></span>
+                <span class="ml-1">Have you registered yet?
+                <button type="button" name="register" (click)="signUp($event)" class="btn btn-xs btn-outline-info">Register
+                </button></span>
+            </div>
+            <div class="card-text card-smaller-text text-left pt-3" style="display: flex;">
+                <span><i class="icon-alert-info"></i></span>
+                <span class="ml-1">Have you forgotten your password?
+                <button type="button" name="register" (click)="resetPassword($event)" class="btn btn-xs btn-outline-info">Reset Password
+                </button></span>
+            </div>
+        </ngb-alert>
+
+          <div class="mb-5 clearfix">
+          <button [disabled]="loading" class="btn btn-primary float-right" type="submit">Sign In</button>
+        </div>
+
+          <footer class="screen-login clearfix">
+          <a class="text-muted float-left" href="{{'' | managerAppUrl}}">Property manager sign in</a>
+          <a class="text-muted float-right" href (click)="resetPassword($event)">Forgot password</a>
+        </footer>
+
+          <div *ngIf="portfolioCode" class="mt-5 clearfix logocontainer text-center">
+            <img width="150px" src="assets/img/brand.png" alt="PropertyMe">
+          </div>
+        </form>
+    </div>
+    <div class="col p-5">
+      <div class="card">
+        <div class="card-body text-info">
+          <h3 class="card-title">Don't have an account?</h3>
+          <p class="card-text">
+            <button class="btn btn-outline-primary" name="sign_up" (click)="signUp($event)" href>Connect Your Property</button>
+          </p>
+          <h4>Owners</h4>
+          <p>
+            View statements, financial reporting, ongoing maintenance, upcoming events, inspection reports and more.
+          </p>
+          <h4>Tenants</h4>
+          <p>
+            Create new maintenance requests, see upcoming events, access receipts, rental information and more.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,289 @@
+<div class="card card-profile visible-md-block visible-lg-block mb-2" *ngIf="property">
+    <div class="property-photo-control" *ngIf="property.MainPhotoDocumentId && isSummary">
+        <img class="agent-logo property-photo" alt="&nbsp;&nbsp;&nbsp;&nbsp; property photo" src="{{'/files/photos/lot/' + property.MainPhotoDocumentId + '?size=' + photoSize  | serverUrl }}">
+    </div>
+    <!--<div *ngIf="!property.MainPhotoDocumentId" class="agent-logo">-->
+    <!--&lt;!&ndash;<app-property-bing-map-image [latitude]="property.Latitude"  [longitude]="property.Longitude" [address]="property.Address.Text" [height]="bingImageHeight"></app-property-bing-map-image>&ndash;&gt;-->
+    <!--</div>-->
+    <div class="text-left pt-2">
+        <div class="card-body text-left" style="padding-left: 1rem !important; padding-top: 0.5rem !important; padding-bottom: 0.1rem !important;">
+            <div class="card-title h5" *ngIf="!isSummary">
+                {{property.Address.Text}}
+            </div>
+            <h5 *ngIf="isSummary">
+                <a routerLink="/member/property">
+                    <div style="display:inline-block"><span style="float: left; white-space: nowrap;">{{wrapAddress(0)}}&nbsp;</span> <span style="float: left;">{{wrapAddress(1)}}</span></div>
+                </a>
+            </h5>
+
+            <div *ngIf="isSummary" class="d-none d-sm-block">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="row" test="companyName">
+                            <div class="col-12" *ngIf="agentInfo && agentInfo.CompanyName">
+                                <h6>{{agentInfo.CompanyName}}</h6>
+                            </div>
+                        </div>
+                        <div class="row" test="managerName">
+                            <div class="col-12 " *ngIf="property.ManagerName">
+                                <b class="label-small text-muted">Manager </b>
+                                {{property.ManagerName}}
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-6">
+
+                        <div class="text-right card-title">
+                            <span class="card-text ">{{property.PropertyType}} </span>
+                        </div>
+
+                        <div class="text-right text-muted card-title">
+                            <i class="icon-pm-bed"></i>
+                            <span class="card-text ">{{property.Bedrooms}}</span>
+
+                            <i class="icon-pm-bath"></i>
+                            <span class="card-text">{{property.Bathrooms}}</span>
+
+                            <i class="icon-pm-car"></i>
+                            <span class="card-text">{{property.CarSpaces}}</span>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <h5 class="card-title">Tenancy</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <ul class="card-menu pl-2">
+                        <li class="card-menu-item">
+                            <div class="text-inherit" >
+                                <b class="text-muted">Paid to</b>
+                                <h6 class="card-text text-center my-0"
+                                    [ngClass]="{ 'text-danger' : getDaysInArrears() > 1 }">
+                                    {{property.PaidTo | formatDate: true : false }}
+                                </h6>
+                            </div>
+                        </li>
+
+                        <li class="card-menu-item">
+                            <div class="text-inherit" *ngIf="property.PartPaid || property.PartPaid === 0">
+                                <b class="text-muted">Part Paid</b>
+                                <h6 class="card-text text-center my-0">{{property.PartPaid | pmCurrency}}</h6>
+                            </div>
+                        </li>
+
+                        <li class="card-menu-item" >
+                            <div class="text-inherit" *ngIf="property.Deposited || property.Deposited === 0">
+                                <b class="text-muted">Deposits</b>
+                                <h6 class="card-text text-center my-0">{{property.Deposited | pmCurrency}}</h6>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="row mt-4" test="rent">
+                    <div class="col-12 d-none d-xl-block">
+                        <b class="label-small text-muted">Rent</b>
+
+                        <h6 style="display:inline">{{property.RentAmount | pmCurrency}} {{property.RentPeriod}}</h6>
+                    </div>
+                    <div class="col-12 d-xl-none">
+                        <b class="label-small text-muted">Rent</b>
+
+                        <h6 style="display:inline">{{property.RentAmount | pmCurrency}}</h6>
+                    </div>
+                </div>
+                <div class="row" test="movedIn">
+                    <div class="col-12">
+                        <b class="label-small text-muted">Moved in</b>
+                        <h6 style="display:inline">{{property.TenancyStart | formatDate : true}}</h6>
+                    </div>
+                </div>
+                <div class="row" test="movedOut">
+                    <div class="col-12" *ngIf="property.TenancyEnd">
+                        <b class="label-small text-muted">{{displayMoveOutLabel()}}</b>
+
+                        <h6 style="display:inline">{{property.TenancyEnd | formatDate : true }}</h6>
+                    </div>
+                </div>
+                <div class="row" test="agreement">
+                    <div class="col-12">
+                        <b class="label-small text-muted">Agreement</b>
+                        <h6 style="display:inline">{{property.AgreementStart | formatDate : true }}</h6>
+                        <h6 style="display:inline" class="d-none d-sm-inline-block" *ngIf="property.AgreementEnd">to {{property.AgreementEnd | formatDate : true }}</h6>
+                    </div>
+                </div>
+                <div class="row d-sm-none" test="agreementto" *ngIf="property.AgreementEnd">
+                    <div class="col-12">
+                        <b class="label-small text-muted"></b>
+                        <h6 style="display:inline">to {{property.AgreementEnd | formatDate : true }}</h6>
+                    </div>
+                </div>
+                <div class="row" test="bond">
+                    <div class="col-12">
+                        <b class="label-small text-muted">Bond held</b>
+                        <h6 style="display:inline">{{property.BondHeld | pmCurrency}}</h6>
+                    </div>
+                </div>
+                <div class="row" test="bankReference">
+                    <div class="col-12" *ngIf="property.BankReference">
+                        <b class="label-small text-muted">Bank Reference</b>
+                        <h6 style="display:inline">{{property.BankReference}}</h6>
+                    </div>
+                </div>
+                <div class="row mb-3"></div>
+
+
+
+
+            </div>
+
+            <div *ngIf="isSummary" class="d-sm-none">
+                <div class="row">
+                    <ul class="card-menu pl-2">
+                        <li class="card-menu-item">
+                            <div class="text-inherit" >
+                                <b class="text-muted">Paid to</b>
+                                <h6 class="card-text text-center my-0"
+                                    [ngClass]="{ 'text-danger' : getDaysInArrears() > 1 }">
+                                    {{property.PaidTo | formatDate: true : false }}
+                                </h6>
+                            </div>
+                        </li>
+
+                        <li class="card-menu-item">
+                            <div class="text-inherit" *ngIf="property.PartPaid || property.PartPaid === 0">
+                                <b class="text-muted">Part Paid</b>
+                                <h6 class="card-text text-center my-0">{{property.PartPaid | pmCurrency}}</h6>
+                            </div>
+                        </li>
+
+                        <li class="card-menu-item">
+                            <div class="text-inherit" *ngIf="property.Deposited || property.Deposited === 0">
+                                <b class="text-muted">Deposits</b>
+                                <h6 class="card-text text-center my-0">{{property.Deposited | pmCurrency}}</h6>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row"  *ngIf="!isSummary" test="propertyType">
+                <div class="col-4">
+                    <b class="label text-muted">{{property.PropertyType}} </b>
+                </div>
+                <div class="col-8 text-right text-muted card-title">
+                    <i class="icon-pm-bed icon-large"></i>
+                    <span class="card-large-text ">{{property.Bedrooms}}</span>
+
+                    <i class="icon-pm-bath icon-large"></i>
+                    <span class="card-large-text">{{property.Bathrooms}}</span>
+
+                    <i class="icon-pm-car icon-large"></i>
+                    <span class="card-large-text">{{property.CarSpaces}}</span>
+                </div>
+            </div>
+            <div *ngIf="!isSummary" class="row">
+
+                <div [ngClass]="{'col-md-7': property.MainPhotoDocumentId, 'col-12': !property.MainPhotoDocumentId}">
+
+                    <div class="row" test="companyName">
+                        <div class="col-12" *ngIf="agentInfo && agentInfo.CompanyName">
+                            <h6>{{agentInfo.CompanyName}}</h6>
+                        </div>
+                    </div>
+                    <div class="row" test="managerName">
+                        <div class="col-12 " *ngIf="property.ManagerName">
+                            <b class="label text-muted">Manager </b>
+                            {{property.ManagerName}}
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <h5 class="card-title">Tenancy</h5>
+                        </div>
+                    </div>
+                    <div class="row" test="rent">
+                        <div class="col-12">
+                            <b class="label text-muted">Rent</b>
+
+                            {{property.RentAmount | pmCurrency}} {{property.RentPeriod}}
+                        </div>
+                    </div>
+                    <div class="row" test="paidToDate">
+                        <div class="col-12">
+                            <b class="label text-muted">Paid to date</b>
+
+                            <span class="card-text text-left"
+                                  [ngClass]="{ 'text-danger' : getDaysInArrears() > 1 }">
+                  {{property.PaidTo | formatDate }}
+                </span>
+                        </div>
+                    </div>
+                    <div class="row" test="movedIn">
+                        <div class="col-12">
+                            <b class="label text-muted">Moved in</b>
+                            {{property.TenancyStart | formatDate }}
+                        </div>
+                    </div>
+                    <div class="row" test="movedOut">
+                        <div class="col-12" *ngIf="property.TenancyEnd">
+                            <b class="label text-muted">{{displayMoveOutLabel()}}</b>
+
+                            {{property.TenancyEnd | formatDate }}
+                        </div>
+                    </div>
+                    <div class="row" test="agreement">
+                        <div class="col-12">
+                            <b class="label text-muted">Agreement</b>
+                            {{property.AgreementStart | formatDate }}
+                            <span class="d-none d-sm-inline-block" *ngIf="property.AgreementEnd">to {{property.AgreementEnd | formatDate }}</span>
+                        </div>
+                    </div>
+                    <div class="row d-sm-none" test="agreementto" *ngIf="property.AgreementEnd">
+                        <div class="col-12">
+                            <b class="label text-muted"></b>
+                            <span >to {{property.AgreementEnd | formatDate }}</span>
+                        </div>
+                    </div>
+                    <div class="row" test="deposited" *ngIf="property.Deposited && property.Deposited > 0">
+                        <div class="col-12">
+                            <b class="label text-muted">Deposited</b>
+
+                            {{property.Deposited | pmCurrency}} deposited
+                        </div>
+                    </div>
+                    <div class="row" test="bond">
+                        <div class="col-12">
+                            <b class="label text-muted">Bond held</b>
+                            {{property.BondHeld | pmCurrency}} held
+                        </div>
+                    </div>
+                    <div class="row" test="bankReference">
+                        <div class="col-12" *ngIf="property.BankReference">
+                            <b class="label text-muted">Bank Reference</b>
+
+                            {{property.BankReference}}
+                        </div>
+                    </div>
+                    <div class="row mb-3"></div>
+                </div>
+                <div class="col-md-5 d-none d-md-block" *ngIf="property.MainPhotoDocumentId">
+                    <img class="agent-logo property-photo" alt="&nbsp;&nbsp;&nbsp;&nbsp; property photo" src="{{'/files/photos/lot/' + property.MainPhotoDocumentId + '?size=' + photoSize  | serverUrl }}" style="max-height:300px;">
+                </div>
+            </div>
+            <div *ngIf="!isSummary && property.MainPhotoDocumentId" class="d-md-none row mt-1">
+                <img alt="&nbsp;&nbsp;&nbsp;&nbsp; property photo" src="{{'/files/photos/lot/' + property.MainPhotoDocumentId + '?size=' + photoSize  | serverUrl }}" style="max-height:300px; max-width:95%; margin-left:10px;">
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- <div class="mt-2 d-none d-md-block" *ngIf="isSummary">
+    <app-nav-card></app-nav-card>
+</div> -->
+

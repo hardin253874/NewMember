@@ -1,0 +1,13 @@
+<div class="card card-profile">
+  <div class="card-body">
+    <ul class="nav navbar-nav">
+      <li class="pt-2 pb-2" *ngFor="let navItem of navItems;">
+        <a routerLink="{{navItem.path}}" routerLinkActive="active" [ngClass]="{ 'active-link' : activeLink(navItem.path)}">
+          <i class="icon {{navItem.icon}}"></i> {{navItem.name}}
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+

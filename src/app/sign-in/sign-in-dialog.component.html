@@ -1,0 +1,29 @@
+<form class="mx-auto text-center"
+      name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+  <div class="modal-header">
+    <h4 class="modal-title text-primary"><i class="icon icon-lock icon-lg"></i>Sign In</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Close')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+      <p class="text-muted"  *ngIf="!alert" >Your session has expired</p>
+      <small><ngb-alert *ngIf="alert" [type]="alert.type" (close)="alert = null">{{ alert.message }}</ngb-alert></small>
+
+      <div class="form-group" [ngClass]="{ 'has-danger' : f.submitted && !username.valid }">
+        <input type="text" class="form-control" name="username" [(ngModel)]="model.username" #username="ngModel" required readonly placeholder="Email"/>
+        <div *ngIf="f.submitted && !username.valid" class="form-control-feedback">Username is required</div>
+      </div>
+
+      <div class="form-group mb-3" [ngClass]="{ 'has-danger' : f.submitted && !password.valid }">
+        <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" required placeholder="Password" />
+        <div *ngIf="f.submitted && !password.valid" class="form-control-feedback">Password is required</div>
+      </div>
+      <app-loading *ngIf="loading"></app-loading>
+  </div>
+  <div class="modal-footer clearfix">
+    <button class="btn btn-link float-left" type="button" (click)="signOut()" >Sign Out</button>
+    <button [disabled]="loading" class="btn btn-outline-primary float-right" type="submit">Sign In</button>
+  </div>
+</form>
+

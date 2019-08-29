@@ -1,0 +1,52 @@
+<div class="container pt-4" *ngIf="portalSession.defaultAgent">
+
+  <div class="row">
+    <div class="col-lg-3">
+      <div class="mb-2">
+        <app-renting-card [isSummary]="true"></app-renting-card>
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+
+      <div class="mb-2">
+        <app-common-actions></app-common-actions>
+
+        <app-upcoming-events></app-upcoming-events>
+
+        <br/>
+
+        <app-activity-feed ></app-activity-feed>
+
+        <!-- <app-nav-card class="d-md-none mt-4"></app-nav-card> -->
+      </div>
+    </div>
+
+    <div class="col-lg-3">
+      <app-agent-card></app-agent-card>
+    </div>
+  </div>
+
+  <!-- always show this at the bottom -->
+  <div class="row">
+      <div class="col-lg-3"></div>
+      <div class="col-lg-6">
+        <div class="card mt-4 mb-2" style="padding: 1rem;">
+          <div class="d-flex w-100 justify-content-between">
+            <div class="card-content-inline ">
+              <img  src="assets/img/brand.png" width="90" >
+            </div>
+            <div class="card-content-inline card-link-list">
+              <a class="mr-4" routerLink="/about" routerlink="/about">About</a>
+              <a href="/terms" routerlink="/terms">Terms</a>&nbsp;
+            </div>
+            <div class="mt-2">
+              <span class="text-muted card-smaller-text">© 2018</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-lg-3"></div>
+    </div>
+</div>

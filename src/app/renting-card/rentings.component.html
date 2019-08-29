@@ -1,0 +1,12 @@
+<div class="container pt-4">
+    <app-common-actions></app-common-actions>
+
+    <div class= "row">
+        <div [ngClass]="{ 'col-lg-6' : isSummary, 'col-lg-9' : !isSummary }" *ngIf="portalSession.defaultAgent">
+            <app-renting-card [tenant]="portalSession.currentTenant"></app-renting-card>
+        </div>
+      <div class="col-lg-3" *ngIf="!isSummary">
+        <app-agent-card></app-agent-card>
+      </div>
+    </div>
+</div>

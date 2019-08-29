@@ -1,0 +1,33 @@
+@import "../../assets/scss/variables.scss";
+
+.card {
+  background-color: $gray-lightest;
+}
+
+.app-login-form {
+  max-width: 280px;
+  margin-top: -60px;
+}
+
+@media (min-width: 576px) {
+  .bw {
+    font-size: 24px;
+  }
+  .bw h1 {
+    font-size: 60px;
+  }
+}
+
+@media (min-width: 992px) {
+  .bw h1,
+  .bw p {
+    max-width: 75%;
+  }
+}
+
+.container-fluid {
+    width: 100vw !important;
+}
+.term-modal {
+    width: 504px !important;
+}

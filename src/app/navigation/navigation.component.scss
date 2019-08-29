@@ -1,0 +1,68 @@
+@import '../../assets/scss/settings.scss';
+
+.navbar {
+  background: url(/assets/img/propertyme-white-icon-nav.png) no-repeat;
+  padding-left: 50px;
+  min-height: 50px;
+}
+
+.navbar-brand {
+  position: absolute;
+  left:0px;
+  top:0px;
+  width: 52px;
+  height:52px;
+  margin:0px;
+}
+
+.right-menu {
+  min-width: 100px;
+}
+
+.property-box {
+  min-width: 200px;
+}
+
+.bg-property-dropdown {
+  max-height:50px;
+}
+
+.navbar-btn-bg  {
+  &::after{
+    display:none;
+  }
+}
+// this is ugly - need something better
+// .property-filter {
+//   background-color: $button-background-color-with-alpha;
+//   border: 1px solid #5bc0de;
+//   border-radius: 8px;
+// }
+
+.preview-alert {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  // height: 1.3rem;
+  -webkit-transform: translate(-50%, -50%);  
+  transform: translate(-50%, -50%); 
+}
+
+.search-box {
+  width: 180px;
+}
+
+.search-box:focus {
+  width: 300px;
+}
+
+.cursor-point {
+  cursor: pointer;
+}
+
+@media (max-width: 767px) {
+ .property-filter {
+     margin-right: 4em;
+ }
+}
+

@@ -1,0 +1,109 @@
+<nav class="navbar p-0 navbar-expand-sm fixed-top navbar-dark bg-primary app-navbar" [ngClass]="{'bg-property-dropdown' : isNavbarCollapsed}">
+  <!--<button class="navbar-toggler navbar-toggler-right"-->
+          <!--type="button"-->
+          <!--(mouseup)="isNavbarCollapsed = !isNavbarCollapsed; $event.stopPropagation()"-->
+          <!--aria-controls="exCollapsingNavbar2"-->
+          <!--aria-expanded="false"-->
+          <!--aria-label="Toggle navigation">-->
+    <!--<span class="navbar-toggler-icon"></span>-->
+  <!--</button>-->
+  <div>
+    <a class="navbar-brand mr-1" routerLink="" routerLinkActive="active" (click)="collapseMenu()"></a>
+
+    <div *ngIf="portalSession.isPreview" class="alert alert-warning alert-dismissible hidden-md-down preview-alert">
+      <!-- <a href="" ng-click="vm.dismiss('showGuestAccessAlert')" class="close"><i class="icon-remove"></i></a> -->
+      <i class="icon-alert-info"></i>
+      <strong>Preview </strong>
+      <span class="mgl-6">is read-only</span>
+    </div>
+
+    <div class="property-box mr-auto float-right" *ngIf="isNavbarCollapsed">
+      <div class="nav-item dropdown property-filter"
+           *ngIf="this.portalSession.tenants &&
+         this.portalSession.tenants &&
+         this.portalSession.tenants.length > 1" ngbDropdown placement="bottom-right">
+        <div class="float-right text-white cursor-point" ngbDropdownToggle>
+          <i class="icon icon-news icon-lg"></i>
+          {{portalSession.currentTenant.LotId | addressText}}
+        </div>
+
+        <div class="dropdown-menu dropdown-menu-left" ngbDropdownMenu>
+          <a class="dropdown-item cursor-point" *ngFor="let tenancy of unArchivedTenants" (click)="switchTenantTo(tenancy)" >
+            {{tenancy.LotId | addressText}}
+          </a>
+        </div>
+      </div>
+
+      <!--//todo don't show property link if only one. can be discussed later.-->
+      <!--<a class="nav-link" routerLink=""-->
+      <!--*ngIf="portalSession.currentTenant && portalSession.tenants && portalSession.tenants.length === 1">-->
+      <!--{{portalSession.currentTenant.LotId | addressText}}-->
+      <!--</a>-->
+    </div>
+    <div class="ml-5 mr-2 d-sm-none float-right"></div>
+  </div>
+
+  <!--<div [ngbCollapse]="isNavbarCollapsed"-->
+       <!--class="collapse navbar-collapse float-right"-->
+       <!--id="exCollapsingNavbar2">-->
+    <!--<div class="navbar-nav">-->
+      <!--<a class="nav-item nav-link d-md-none" routerLink="/transactions" routerLinkActive="active" (click)="collapseMenu()">-->
+        <!--Transactions-->
+      <!--</a>-->
+      <!--<a class="nav-item nav-link d-md-none" routerLink="/activities" routerLinkActive="active" (click)="collapseMenu()">-->
+          <!--Activity-->
+      <!--</a>-->
+      <!--<a class="nav-item nav-link d-md-none" routerLink="/member/profile" routerLinkActive="active" (click)="collapseMenu()">-->
+        <!--Profile-->
+      <!--</a>-->
+      <!--<a class="nav-item nav-link d-md-none" routerLink="/sign-in" routerLinkActive="active" (click)="collapseMenu()">-->
+        <!--Sign Out-->
+      <!--</a>-->
+    <!--</div>-->
+  <!--</div>-->
+  <div class="float-right d-md-none ml-auto" ngbDropdown placement="bottom-right">
+    <button class="btn btn-default navbar-btn bg-primary text-white float-right navbar-btn-bg cursor-point" ngbDropdownToggle type="button">
+      <span class="icon icon-menu icon-2x"></span>
+    </button>
+    <div class="dropdown-menu dropdown-menu-right text-large" ngbDropdownMenu>
+      <a class="nav-link" routerLink="/" routerLinkActive="active" (click)="collapseMenu()">
+        Home
+      </a>
+      <a class="nav-link " routerLink="/transactions" routerLinkActive="active" (click)="collapseMenu()">
+        Transactions
+      </a>
+      <a class="nav-link" routerLink="/activities" routerLinkActive="active" (click)="collapseMenu()">
+        Activity
+      </a>
+      <a class="nav-link" routerLink="/documents" routerLinkActive="active" (click)="collapseMenu()">
+          Document
+      </a>
+      <div class="dropdown-divider"></div>
+      <a class="nav-link" routerLink="/member/profile" routerLinkActive="active" (click)="collapseMenu()">
+        Profile
+      </a>
+      <a class="nav-link" *ngIf="portalSession.ownerAccess" href="/owner/">OwnerAccess</a>
+      <a class="nav-link" routerLink="/sign-in" routerLinkActive="active" (click)="collapseMenu()">
+        Sign Out
+      </a>
+    </div>
+  </div>
+
+
+  <div class="float-right d-none d-md-block ml-auto" ngbDropdown placement="bottom-right">
+    <button class="btn btn-default navbar-btn bg-primary text-white float-right navbar-btn-bg cursor-point" ngbDropdownToggle type="button">
+        <span class="icon icon-menu icon-2x"></span>
+      </button>
+    <div class="dropdown-menu dropdown-menu-right" ngbDropdownMenu>
+      <a class="dropdown-item" routerLinkActive="active" routerLink="/">Home</a>
+      <a class="dropdown-item" routerLinkActive="active" routerLink="/transactions">Transactions</a>
+      <a class="dropdown-item" routerLinkActive="active" routerLink="/activities">Activity</a>
+      <a class="dropdown-item" routerLinkActive="active" routerLink="/documents">Document</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" routerLinkActive="active" routerLink="/member/profile">Profile</a>
+      <a class="dropdown-item" *ngIf="portalSession.ownerAccess" href="/owner/">Owner Access</a>
+      <a class="dropdown-item" routerLinkActive="active" routerLink="/sign-in">Sign Out</a>
+    </div>
+  </div>
+</nav>
+
