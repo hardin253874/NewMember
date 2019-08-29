@@ -1,0 +1,38 @@
+<ul class="navbar-nav nav navbar-right" data-ng-controller="userMenuController as vm" ng-cloak >
+    <li class="">
+        <a data-toggle="dropdown" href="" class="dropdown-toggle disp-ib clearfix no-padding" style="margin: 3px 0 0 5px">
+            <div class="user-initial-badge bg-info-blue" style="margin: 0">
+                {{ ($root.session.FirstName + '') + ' ' + ($root.session.LastName || '') | initials}}
+            </div>
+        </a>
+        <ul class="user-menu  dropdown-menu dropdown-yellow dropdown-caret dropdown-closer">
+            <li class="text-center">
+                <span class=" text-light large ">{{$root.session.FirstName}} {{$root.session.LastName}}</span>
+            </li>
+            <li class="divider"></li>
+            <li>
+                <a href="#/user/edit">
+                    <i class="icon-user"></i>
+                    Your Profile
+                </a>
+            </li>
+
+            <!--
+            <li pm-show-only-to-admin>
+                <a href="" ng-click="vm.toggleSkin()" class="green">
+                   <i class="icon-pm-lab"></i> Toggle Skin
+                </a>
+            </li>
+            -->
+
+            <li class="divider"></li>
+
+            <li>
+                <a href="/api/auth/logout">
+                    <i class="icon-off"></i>
+                    Sign Out
+                </a>
+            </li>
+        </ul>
+    </li>
+</ul>

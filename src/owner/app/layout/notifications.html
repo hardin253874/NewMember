@@ -1,0 +1,96 @@
+<div id="title-bar-notifications" data-ng-controller="notificationsController as vm">
+    <ul class="navbar-nav nav navbar-right"  >
+        <!--Search-->
+        <li class="notification-header search">
+            <a href="" class="notifications-main-link" ng-click="vm.switchSearch()">
+                <i class="icon-search icon-large "></i>
+            </a>
+            <ul class="notification-list dropdown-menu xdropdown-caret xdropdown-close " style="padding-bottom: 0; display: block;" ng-if="vm.isSearching">
+                <div class="notification-list-header nowrap">
+                    <pm-quick-search place-holder="Search..." pm-autofocus is-searching="vm.isSearching" is-displayed-before="vm.isDisplayedBefore"></pm-quick-search>
+                </div>
+            </ul>
+        </li>
+
+        <!--ALERTS-->
+        <li class="notification-header alerts" ng-if="!vm.disabled">
+            <a data-toggle="dropdown" href="" class=" dropdown-toggle notifications-main-link" ng-click="vm.clickAlerts()">
+                <i class="icon-bell-alt icon-large " ng-class="{'orange icon-animated-bell': vm.notificationService.newAlertCount > 0 }"></i>
+                <!--<span class="badge badge-danger" ng-if="vm.newAlertCount">{{vm.newAlertCount}}</span>-->
+            </a>
+            <ul class=" notification-list dropdown-menu   dropdown-caret dropdown-closer  ">
+                <div class="notification-list-header">
+                    <i class="icon-bell-alt  "></i>
+                    Alerts
+                    <small ng-class="{'blue': vm.notificationService.newAlertCount > 0}">{{vm.notificationService.newAlertCount}} new</small>
+                </div>
+
+                <div class="notification-list-inner">
+                    <li class="notification-group-header">
+                        <!--Need this to show the dotted line above first entry-->&nbsp;
+                    </li>
+                    <li class="notification-list-item text-center text-muted" ng-if="!vm.notificationService.waitingToLoadingAlerts && vm.notificationService.newAlerts.length === 0">
+                        No new alerts
+                    </li>
+
+                    <li class="notification-list-item" ng-repeat="event in vm.notificationService.newAlerts track by event.Id">
+                        <!--User initial icon or PM icon -->
+                        <div ng-if="event.MemberInitials" class="user-initial user-initial-badge">{{event.MemberInitials}}
+                        </div>
+                        <!-- Add the PropertyMe-bot later <img ng-if="!event.MemberInitials" class="user-initial" src="favicon.ico">-->
+
+                        <div class="details" ng-class="{'text-muted': event.IsRead, 'black': !event.IsRead }" style="padding-left: 30px;">
+                            <!--<a href="{{event.getLink().href}}"> {{event.getLink().text}} </a>-->
+                            <span ng-repeat="link in vm.event.links">
+                                <a target="{{link.target}}" href="{{link.href}}">
+                                    {{link.text}}
+                                </a>
+                                &nbsp;
+                            </span>
+                            {{event.Detail}}
+                            </div>
+                    </li>
+
+                    <li class="notification-list-item text-center text-muted" ng-if="vm.notificationService.waitingToLoadingAlerts">
+                        Loading new alerts ...
+                    </li>
+                </div>
+
+                <div class="notification-list-footer">
+                    <div>
+                        <!--Need container div so that bootstrap drop[down formatting is ignored on the link-->
+                        <a class="disp-b" href="#/log/list?tab=Alerts">See past alerts</a>
+                    </div>
+                </div>
+            </ul>
+        </li>
+    </ul>
+    <div class="disconnected-banner" ng-if="vm.disconnected" ng-class="{'warning': !vm.disconnectedRequireReload, 'danger': vm.disconnectedRequireReload }">
+        <div ng-hide="vm.disconnectedRequireReload" >
+            <i class=" icon-cloud icon-animated-pulse "></i>
+            Connecting ...
+        </div>
+        <div ng-show="vm.disconnectedRequireReload" >
+            <p>
+                <i class=" icon-cloud  icon-large "></i>
+                Connection lost
+            </p>
+            <a href="" class="btn btn-block btn-light btn-sm" ng-click="vm.reload()" >
+                <i class=" icon-pm-powercord "></i>
+                Reconnect
+            </a>
+        </div>
+    </div>
+    <div class="signedout-banner" ng-if="vm.userSignedOut" ng-class="{'danger': vm.userSignedOut }">
+        <div>
+            <p>
+                <i class=" icon-cloud  icon-large "></i>
+                Session terminated
+            </p>
+            <a href="" class="btn btn-block btn-light btn-sm" ng-click="vm.reload()" >
+                <i class=" icon-pm-powercord "></i>
+                Sign in
+            </a>
+        </div>
+    </div>
+</div>

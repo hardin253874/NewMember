@@ -1,0 +1,23 @@
+<div class="file-upload-toast" style=""
+     ng-controller="toastAsyncStatusController as vm" ng-show="vm.showInvoicingToast || vm.showDisbursingToast">
+
+    <div class="padding-v6 file-upload-toast" ng-show="vm.showDisbursingToast" >
+        Disbursing <i class="icon-refresh icon-spin"></i>
+    </div>
+
+    <div class="padding-v6 file-upload-toast" ng-show="vm.showInvoicingToast" >
+        Rent Invoicing <i class="icon-refresh icon-spin"></i>
+    </div>
+    <!--<div ng-repeat="group in vm.statusGroups">-->
+        <!--<div ng-if="group.count === 1">-->
+            <!--{{group.verb}} {{group.type}}-->
+        <!--</div>-->
+        <!--<div ng-if="group.count > 1">-->
+            <!--<div class="progress no-margin-bottom">-->
+                <!--<div class="progress-bar" role="progressbar"  ng-style="{ 'width': group.percent() + '%' }"></div>-->
+            <!--</div>-->
+
+            <!--{{group.verb}} {{group.count}} {{group.type}}s-->
+        <!--</div>-->
+    <!--</div>-->
+</div>

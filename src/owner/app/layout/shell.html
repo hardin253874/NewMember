@@ -1,0 +1,24 @@
+﻿<div class="topnav-container"  ng-include="'/owner/app/layout/topnav.html'"></div>
+<div class="" id="mainContainer" ng-controller="shellController as vmShell">
+
+    <!--Sidebar is INSIDE the main container-->
+    <div ng-include="'/owner/app/layout/sidebar.html'" ng-if="!$root.isInNewWindow" ng-hide="$root.isSettingsView"></div>
+    <div ng-include="'/owner/app/layout/settings-sidebar.html'" ng-if="!$root.isInNewWindow" ng-show="$root.isSettingsView"></div>
+
+    <div id="content">
+        <div id="content-system-alert"  ng-include="'/owner/app/layout/system-alert.html'"></div>
+        <div id="content-inner" ng-view></div>
+    </div>
+</div>
+
+<footer id="footer">
+    <div ng-include="'/owner/app/layout/footer-alert.html'"></div>
+</footer>
+
+<div ng-include="'/owner/app/layout/toast-file-upload.html'"></div>
+
+<div ng-include="'/owner/app/layout/toast-async-status.html'"></div>
+
+<div class="successTick "  ng-show="$root.showSuccess">
+    <i class="icon-alert-finished icon-2x"></i>
+</div>

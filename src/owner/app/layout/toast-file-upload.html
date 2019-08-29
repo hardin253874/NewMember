@@ -1,0 +1,43 @@
+<div class="file-upload-toast" style="" ng-controller="toastFileUploadController as vm" ng-show="vm.showToast">
+    <div class="" ng-if="vm.uploader.isUploading">
+
+        <div ng-if="!vm.isSavingOnS3">
+           <div class="progress no-margin-bottom">
+                <div class="progress-bar progress-bar-ease" role="progressbar"
+                     ng-style="{ 'width': Math.max(0, vm.uploader.progress) + '%' }"></div>
+                </div>
+            <div class="" ng-if="vm.uploader.isUploading">
+                Uploading {{ vm.uploader.queue.length }} file{{ vm.uploader.queue.length == 1? '' : 's'}}
+                <div ng-if="vm.currentFileItem" class="small">
+                    <span class="italic">
+                    {{vm.currentFileItem.file.name | limitTo: 25}}
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div ng-if="vm.isSavingOnS3">
+            <i class="icon-refresh icon-spin icon-large"></i>&nbsp;
+            Saving on server
+        </div>
+
+        <button type="button" class="mgt-8 btn btn-light btn-sm btn-block" ng-click="vm.stopUpload()">
+            <i class="icon-remove icon-large"></i>
+            &nbsp; Stop Upload
+        </button>
+    </div>
+    <div ng-if="!vm.uploader.isUploading" class="padding-vbase clearfix">
+        <div ng-if="vm.isSuccess" >
+
+            <i class="pull-left icon-ok icon-embossed green"></i>
+            <div class="mgt-8 bold disp-ib mgl-6">Upload successful!</div>
+        </div>
+        <div ng-if="!vm.isSuccess">
+            <span class="icon-stack">
+                <i class="icon-circle white icon-large"></i>
+                <i class="icon-remove-sign icon-large red"></i>
+            </span>
+             Uploading stopped
+        </div>
+    </div>
+</div>

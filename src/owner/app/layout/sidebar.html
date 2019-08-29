@@ -1,0 +1,54 @@
+﻿
+<div class="sidebar fixed " style="overflow-y: auto;overflow-x:hidden;"  id="sidebar" data-cc-sidebar ng-controller="sidebarController as vm">
+
+    <ul class="nav nav-list" >
+        <li ng-repeat="menu in vm.menus" ng-show="!menu.isHidden && menu.subMenus.length === 0" ng-class="{active: vm.isCurrent(menu)}">
+            <a ng-href="{{menu.link}}" ng-click="vm.refresh(menu)" >
+                <i class="{{menu.icon}}"></i>
+                <span class="menu-text">{{menu.title}}<span ng-if="menu.isBetaFeature" pm-beta-feature></span>
+                    <span ng-if="menu.extraElement" class="badge badge-warning menu-text" style="margin-right: 6px;margin-top: 2px;">
+                        {{menu.extraElement}}
+                    </span>
+                </span>
+            </a>
+        </li>
+
+        <li ng-repeat="menu in vm.menus" ng-show="!menu.isHidden && menu.subMenus.length > 0 "
+            ng-class="{active: vm.isCurrent(menu), 'open': (!$root.isTouchDevice && vm.isCurrent(menu)) || vm.isOpen(menu)}">
+
+            <a ng-href="{{menu.link === '#' ? '' : menu.link}}" ng-click="menu.subMenuOpen = (!$root.isTouchDevice && vm.isCurrent(menu)) || !menu.subMenuOpen"
+               class="hasSubMenu cursor-pointer">
+                <i class="{{menu.icon}} {{menu.extraElement ? 'menu-warning' : ''}}"></i>
+                <span class="menu-text">{{menu.title}}<span ng-if="menu.isBetaFeature" pm-beta-feature></span>
+                    <span ng-if="menu.extraElement" class="badge badge-warning menu-text" style="margin-right: 16px; margin-top: 2px; ">
+                        {{menu.extraElement}}
+                    </span>
+                </span>
+                <b class="arrow icon-angle-down"></b>
+            </a>
+
+            <ul class="submenu " >
+                <li ng-repeat="submenu in menu.subMenus" ng-class="{active: vm.isCurrent(submenu)}" ng-show="!submenu.isHidden">
+                    <a ng-href="{{submenu.link}}" ng-click="vm.refresh(submenu)">
+                        <i class="{{submenu.icon}}"></i>
+                        <span class="menu-text">{{submenu.title}}<span ng-if="submenu.isBetaFeature" pm-beta-feature></span>
+                             <span ng-if="submenu.extraElement" class="badge badge-warning menu-text" style="margin-right: 16px; margin-top: 2px; ">
+                                {{submenu.extraElement}}
+                            </span>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+
+        </li>
+    </ul>
+    <!--/.nav-list-->
+    <div class="sidebar-collapse" id="sidebar-collapse-button" ng-click="vm.minToggle()" >
+        <i class="goSmall icon-double-angle-left"></i>
+        <i class="goBig icon-double-angle-right"></i>
+    </div>
+    <div id="PartnerHelpMe" ng-if="vm.partnerInfo.Website" >
+        <a ng-href="{{ vm.partnerInfo.Website }}" target="_blank">Partner</a>
+    </div>
+
+</div>
