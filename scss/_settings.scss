@@ -1,0 +1,164 @@
+@import '_variables';
+
+// common settings
+.list-item-card{
+    width: 100%;
+}
+
+.action-button {
+  cursor: pointer;
+  color: $btn-primary-bg;
+
+  display: inline-block;
+  font-weight: normal;
+  line-height: 1.25;
+  text-align: center;
+  white-space: nowrap;
+  user-select: none;
+  border: 1px solid $btn-primary-bg;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  transition: all 0.2s ease-in-out;
+
+  background-color: transparent;
+  vertical-align: middle;
+}
+
+.action-button:hover, .upload-button:active  {
+  background-color: $btn-primary-bg;
+  color: white;
+}
+
+.show-more{
+    width:9em;
+    margin-right: 1em;
+    background-color: $white-color;
+}
+
+.item-card-comment{
+    padding-left:0.5em;
+}
+
+.card-small-text {
+  font-size: small;
+}
+
+.card-smaller-text {
+  font-size: smaller;
+}
+
+.card-large-text {
+  font-size: 1.3rem;
+}
+
+.card-larger-text {
+  font-size: 1.5rem;
+}
+
+.icon-large {
+  font-size: large;
+}
+
+.icon-larger {
+  font-size: larger;
+}
+
+.text-justify {
+  word-wrap: break-word;
+}
+
+.active-link {
+  color: $brand-primary;
+  font-weight: bolder;
+}
+
+.white-space-pre-line {
+  white-space: pre-line;
+}
+
+/// bootstrap V4 missing callouts
+/// also customed for our titles: bd-callout, bd-callout-default
+
+.bd-callout {
+  // padding: 20px;
+  // margin: 20px 0;
+  // border: 1px solid #eee;
+  // border-left-width: 5px;
+  // border-radius: 3px;
+
+  border: 0px solid $whisper-color;
+  border-left-width: 5px;
+  border-radius: 6px;
+}
+
+.bd-callout h4 {
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+.bd-callout p:last-child {
+  margin-bottom: 0;
+}
+
+.bd-callout code {
+  border-radius: 3px;
+}
+
+.bd-callout+.bd-callout {
+  margin-top: -5px;
+}
+
+.bd-callout-default {
+  border-left-color: $light-grey-color;
+}
+
+.bd-callout-default h4 {
+  color: $light-grey-color;
+}
+
+.bd-callout-primary {
+  border-left-color: $bd-callout-primary;
+}
+
+.bd-callout-primary h4 {
+  color: $bd-callout-primary;
+}
+
+.bd-callout-success {
+  border-left-color: $bd-callout-success;
+}
+
+.bd-callout-success h4 {
+  color: $bd-callout-success;
+}
+
+.bd-callout-danger {
+  border-left-color: $bd-callout-danger;
+}
+
+.bd-callout-danger h4 {
+  color: $bd-callout-danger;
+}
+
+.bd-callout-warning {
+  border-left-color: $bd-callout-warning;
+}
+
+.bd-callout-warning h4 {
+  color: $bd-callout-warning;
+}
+
+.bd-callout-info {
+  border-left-color: $bd-callout-info;
+}
+
+.bd-callout-info h4 {
+  color: $bd-callout-info;
+}
+
+label.action-button input[type=file] {
+    display: none;
+    position: fixed;
+    top: -99999px;
+}
