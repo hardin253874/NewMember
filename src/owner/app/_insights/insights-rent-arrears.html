@@ -1,0 +1,56 @@
+﻿<style>
+    .chart-container {
+        height: 300px;
+    }
+</style>
+<section class="pageContainer" ng-controller="insightsRentArrearsController as vm">
+    <div class="abovePagePanels">
+        <h1>Rent Arrears
+        </h1>
+    </div>
+    <div class="pagePanelContainer">
+        <div class="pagePanel ">
+            <button type="button" class="btn btn-default" ng-click="vm.showEditSeriesModal()">
+                <strong><i class="icon/-pencil"></i> Edit Series</strong>
+            </button>
+            <pmc-date-range style="display: inline-block" on-update="vm.updateMonthRange(from, to)" from="vm.initFrom" to="vm.initTo"></pmc-date-range>
+            <div style="display: inline-block" class="btn-group" uib-dropdown>
+                <button id="btn-append-to-single-button" type="button" class="btn btn-default" uib-dropdown-toggle>
+                    Options <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-single-button">
+                    <li role="menuitem">
+                        <a ng-click="vm.showInPercentage()" href="">
+                            <i class="icon-blank" ng-hide="vm.inPercentage"></i>
+                            <i class="icon-pm-checkmark" ng-show="vm.inPercentage"></i> By percentage
+                        </a>
+                    </li>
+                    <li role="menuitem">
+                        <a ng-click="vm.showInTenants()" href="">
+                            <i class="icon-blank" ng-hide="!vm.inPercentage"></i>
+                            <i class="icon-pm-checkmark" ng-show="!vm.inPercentage"></i> By tenant
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <p class="v-space-24"></p>
+            <div style="width: inherit; height:inherit;">
+                <div class="panel-body">
+                    <pmc-chart chart-def="vm.chartDef" chart-series="vm.chartSeries" on-point="vm.showDetail(data)"></pmc-chart>
+                </div>
+            </div>
+            <div ng-if="vm.selectedDate && vm.chartSeries.length > 0">
+                <p class="v-space-24"></p>
+                <h3>Arrears on {{vm.selectedDate | date }}</h3>
+                <pmc-list-arrears date="vm.selectedDate" chart-series="vm.chartSeries" on-click="vm.showTenancyChart(tenancyId, contactReference, lotReference)" ></pmc-list-arrears>
+            </div>
+            <div ng-hide="vm.selectedDate && vm.chartSeries.length > 0">
+                <div class="v-space-24"></div>
+                <p class="text-info">
+                    <i class="icon-info-sign"></i>
+                    Select a data point to view the tenants in arrears on that day
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
