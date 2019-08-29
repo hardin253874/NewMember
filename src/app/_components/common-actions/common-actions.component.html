@@ -1,0 +1,16 @@
+  <div class="row">
+    <div class="col-12 mb-2 d-inline-flex">
+      <app-new-maintenance class="mr-2" *ngIf="!isClosed"></app-new-maintenance>
+
+      <!-- <button class="btn btn-outline-primary mr-2 d-none d-md-block" (click)="messageAgent()">
+        <span><i class="icon icon-message"></i> Message Agent</span>
+      </button>
+      <button class="btn btn-s btn-outline-primary mr-2 d-md-none" (click)="messageAgent()">
+        <span><i class="icon icon-message"></i> Message Agent</span>
+      </button> -->
+      <app-message-agent class="mr-2" *ngIf="!isClosed"></app-message-agent>
+      <!-- <label class="action-button" >
+        <span><i class="icon icon-dollar icon-lg"></i> Make Payment</span>
+      </label> -->
+    </div>
+  </div>

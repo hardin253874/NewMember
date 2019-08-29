@@ -1,0 +1,16 @@
+<div class="form-group row has-feedback"
+  [ngClass]="{'has-danger':state && !state.pristine && !state.valid && !state.control.pending}">
+
+  <label for="for" class="col-3 col-form-label">{{label}}</label>
+  <div class="col-9">
+    <ng-content ></ng-content>
+    <span *ngIf="isStateNotValid()" class="help-block text-danger">
+        <div *ngIf="state?.errors?.required">required</div>
+        <div *ngIf="state?.errors?.remote">{{state?.errors?.remote}}</div>
+        <div *ngIf="state?.errors?.notEmpty">can't be empty</div>
+        <div *ngIf="state?.errors?.uniqueName">must be unique</div>
+        <div *ngIf="state?.errors?.minlength">too short</div>
+        <div *ngIf="state?.errors?.maxlength">too long</div>
+    </span>
+  </div>
+</div>
