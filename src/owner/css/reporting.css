@@ -1,0 +1,407 @@
+
+
+.invoice {
+    border: 1px solid #C5C5C5;
+}
+
+.accounting .status-bar {
+    background-color: #F8F8F8;
+    border-bottom: 1px dotted #C5C5C5;
+    padding: 0.4em;
+}
+    .accounting .status-bar .status {
+        font-weight: bold;
+    }
+
+.accounting .status {
+    padding-top: 0.4em;
+}
+
+.accounting h4 {
+    font-size: 1em;
+    line-height: normal;
+    margin: 0;
+    padding: 0;
+}
+
+.accounting .address {
+    white-space: pre-line;
+}
+
+.accounting .section {
+    padding: 0.8em;
+}
+
+    .accounting .section div {
+        padding-right: 1em;
+    }
+
+.accounting table.lines {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #CCCCCC;
+}
+
+.accounting table th {
+    border: 1px solid #CCCCCC;
+    background-image: linear-gradient(bottom, rgb(232,232,232) 14%, rgb(255,255,255) 84%);
+    background-image: -o-linear-gradient(bottom, rgb(232,232,232) 14%, rgb(255,255,255) 84%);
+    background-image: -moz-linear-gradient(bottom, rgb(232,232,232) 14%, rgb(255,255,255) 84%);
+    background-image: -webkit-linear-gradient(bottom, rgb(232,232,232) 14%, rgb(255,255,255) 84%);
+    background-image: -ms-linear-gradient(bottom, rgb(232,232,232) 14%, rgb(255,255,255) 84%);
+}
+
+.accounting td, .accounting th {
+    border: 1px solid #C5C5C5;
+    padding: 0.4em;
+    font-weight: normal;
+}
+
+.accounting .totals {
+    margin-top: 1em;
+}
+
+    .accounting .totals div {
+        padding: 3px;
+    }
+
+        .accounting .totals div span {
+            display: inline-block;
+            width: 8em;
+        }
+
+.accounting .grand-total {
+    border-top: 1px solid #888;
+    border-bottom: 3px double #888;
+    font-weight: bold;
+}
+
+.accounting .hr {
+    border-bottom: 1px solid #c5c5c5;
+}
+
+.top-hr {
+    border-top: 1px solid #c5c5c5;
+}
+
+
+.lines th, .lines td {
+    text-align: left;
+}
+
+.amount {
+    text-align: right !important;
+}
+
+.accounting table.lines th {
+    font-weight: bold;
+    color: #555;
+    text-align: center;
+}
+
+.accounting table td {
+    border-top: 0 none;
+    border-bottom: 0 none;
+}
+
+td.disburse-step {
+    text-align: center !important;
+    border: 0 none black;
+    width: 80px;
+}
+
+    td.disburse-step.on {
+        background: url("/images/step-part.png") center repeat-x;
+    }
+
+    td.disburse-step.off.first {
+        background: url("/images/step-end.png") left center no-repeat;
+    }
+
+    td.disburse-step.on.last {
+        background: url("/images/step-end-last.png") right center no-repeat !important;
+    }
+
+    td.disburse-step.start {
+        background: url("/images/step-moving.gif") left center no-repeat;
+    }
+
+    td.disburse-step.done {
+        background: url("/images/step-part-green.png") center repeat-x;
+    }
+
+        td.disburse-step.done.last {
+            background: url("/images/step-end-last-green.png") right center no-repeat;
+        }
+
+    td.disburse-step.failed {
+        background: url("/images/step-part-red.png") center repeat-x;
+    }
+
+.accounting.invoice table tr:nth-child(even) {
+    background-color: whiteSmoke;
+}
+
+.accounting table tr.row-even {
+    background-color: whiteSmoke;
+}
+
+.accounting table tr.row-first td {
+    border-top: 1px solid #CCCCCC;
+}
+
+.accounting table tr td:first-child {
+    border-top: 0px none #CCCCCC;
+    background-color: whiteSmoke;
+}
+
+.accounting .group-header {
+    background-color: whitesmoke;
+    border-top: 1px solid #CCCCCC;
+}
+    .accounting .group-header h4 {
+        cursor: pointer;
+        /*padding: 0.5em 0;*/
+    }
+
+.expandable {
+    cursor: pointer;
+}
+
+input.lookup {
+    height: 2em;
+    line-height: normal;
+    border-radius: 5px 0px 0px 5px;
+    font-family: 'Trebuchet MS', Verdana, Helvetica, sans-serif;
+    font-size: 13px;
+    margin-top: -2px;
+}
+
+button.lookup-button {
+    padding: 2px;
+    line-height: normal;
+    margin: 0px 2px 2px -2px !important;
+    height: 2em;
+    border-radius: 0px 5px 5px 0px;
+    font-family: 'Trebuchet MS', Verdana, Helvetica, sans-serif;
+    font-size: 13px;
+}
+
+.propertyFilter input {
+    height: 1.85em;
+}
+
+.propertyFilter button {
+     height: 1.85em;
+}
+
+select.k-input {
+    border-width: 1px;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    -khtml-appearance: none;
+    font-family: 'Trebuchet MS', Verdana, Helvetica, sans-serif;
+    font-size: 13px;
+    padding: 2px;
+    background-color: white;
+    background-image: url('/images/drop-arrow.png');
+    background-position: right center;
+    background-repeat: no-repeat;
+    height: 2.2em;
+
+}
+
+.periodFilter {
+    border: 0px none;
+    padding: 0;
+    margin-top: 1px;
+    margin-left: 1em;
+    background: none;
+
+}
+    .periodFilter select {
+        margin-top: 2px;
+        float: left;
+        width: 10em;
+        padding: 2px 5px !important;
+        border-radius: 0;
+        text-align: center;
+        height: 1.85em !important;
+    }
+    .periodFilter a.next {
+        margin: 2px 0 0 0px !important;
+        border-radius: 0px 5px 5px 0px;
+        border-left: 0px none;
+    }
+
+    .periodFilter a.prev {
+        margin: 2px -2px 0 0 !important;
+        border-radius: 5px 0px 0px 5px;
+        border-right: 0px none;
+    }
+
+/* for bank record report*/
+.bankrec {
+    padding-top: 1em;
+}
+
+    .bankrec table.form-title {
+        font-size: 1.1em;
+        background-color: #EEE;
+        border-left: 1px solid #C5C5C5;
+        border-right: 1px solid #C5C5C5;
+        border-top: 1px solid #C5C5C5;
+        border-bottom: 1px dotted #C5C5C5;
+        text-align: center;
+    }
+
+    .bankrec .form-title .k-datepicker {
+        width: 9em;
+    }
+
+.form-title td {
+    padding: 0.4em;
+}
+
+.bankrec table.form-content {
+    border-left: 1px solid #C5C5C5;
+    border-right: 1px solid #C5C5C5;
+    border-bottom: 1px solid #C5C5C5;
+    padding: 1em;
+}
+
+.bankrec .detail-row .text-col {
+    padding-left: 2em;
+}
+
+.bankrec .section-row td.text-col {
+    border-bottom: 1px solid #C5C5C5;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}
+
+.bankrec .section-row {
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}
+
+    .bankrec .section-row .text-col {
+        font-weight: bold;
+    }
+
+.bankrec .header-row .text-col {
+    font-weight: bold;
+}
+
+.bankrec .result-col {
+    border-top: 1px solid #C5C5C5;
+    border-bottom: 3px double #C5C5C5;
+}
+
+.bankrec .amount-col {
+    width: 12em;
+    text-align: right;
+}
+
+.bankrec .k-numeric-wrap {
+    padding: 2px !important;
+}
+
+.bankrec .k-numerictextbox .k-select {
+    display: none;
+}
+
+.bankrec .k-numerictextbox input {
+    padding-top: 0.1em;
+    padding-bottom: 0.1em;
+}
+
+.bankrec .warn {
+	color: orange;	
+}
+.bankrec .alert {
+	color: red;	
+}
+
+/* for trial balance report*/
+.trialBalance {
+}
+
+    .trialBalance .title {
+        font-size: 1.3em;
+        padding: 1em 0 0 0;
+        font-style: bold;
+        text-align: center;
+    }
+
+    .trialBalance .headerText {
+        font-size: 1em;
+        text-align: right;
+        margin-right: 3em;
+    }
+
+    .trialBalance .header {
+        font-size: 1.1em;
+        text-align: right;
+        font-style: bold;
+        padding-bottom: 4px;
+        border-bottom: 1px solid black;
+    }
+     .trialBalance .headerstring {
+            text-align: left;
+    }   
+
+  .trialBalance .subtotal {
+        padding-top: 4px;
+        border-top: 1px solid grey;
+        font-size: 1.1em;
+        font-style: bold;
+        text-align: right;
+    }
+
+  .trialBalance .total {
+        padding-top: 4px;
+        border-top: 1px solid black;
+        font-size: 1.1em;
+        font-style: bold;
+        text-align: right;
+    }
+
+    .trialBalance table {
+        width: 98%;
+        margin-left: auto;
+        margin-right: auto;
+        vertical-align: center;
+        /*border-collapse: collapse;
+        margin: 20px,20px,20px,20px;*/
+    }
+
+    .trialBalance .date-col {
+        width: 6em;
+    }
+
+    .trialBalance .index-col {
+        width: 5em;
+    }
+
+    .trialBalance .num-col {
+        text-align: right;
+    }
+
+    .trialBalance th {
+        text-align: left;
+        border-bottom: 2px solid #808080;
+    }
+
+    .trialBalance tr.detail {
+        font-size: 0.9em;
+    }
+
+        .trialBalance tr.detail td.detail {
+            padding-left: 2em;
+        }
+

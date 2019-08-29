@@ -1,0 +1,87 @@
+body { font-size: 10pt; font-family: "Trebuchet MS" , Verdana, Helvetica, Sans-Serif; color: #232323; background-color: #eee; }
+
+header, footer, nav, section { display: block; }
+
+body { padding: 0; margin: 0;  }
+
+#site-container { 
+    -webkit-transform: translate3d(0,0,0);
+    float: left; width: 989px; min-height: 548px; height: 100%; background-color: #fff; }
+
+a { text-decoration: none; outline: none; color: #003366; }
+a:hover { text-decoration: underline; }
+#header div { display: inline-block; }
+#header #title { font-family: Arial Black, Gadget, Sans-Serif; font-size: 2em; padding: 15px;}
+#header {  background: #F29F01; text-align: left; }
+#userWidget { float: right; padding: 1em; }
+#main { padding: 1em; }
+
+#userWidget #name { font-weight: bold; }
+#nav a:hover { text-decoration: none; }
+
+
+#navbar {    
+    vertical-align: bottom;
+    margin-bottom: -4px; 
+}
+#nav a {
+    text-decoration: none;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;     
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;  
+    float: left;  
+    padding: 8px; 
+    width: 6em;
+    border-bottom: 0px;
+    margin-left: -1px;
+}
+
+#nav a:hover {
+    text-decoration: none   
+}
+
+#breadcrumbs ul, #breadcrumbs li { list-style-type: none; padding: 0; margin: 0; }
+#breadcrumbs { height: 3em; border-bottom: 1px solid #dedede; }
+#breadcrumbs li { float: left; line-height: 3em; color: #777; padding-left: .75em; }
+#breadcrumbs li a { background: url(images/crumbs.gif) no-repeat right center; display: block; padding: 0 15px 0 0; }
+#breadcrumbs li a:link, #breadcrumbs li a:visited { color: #777; text-decoration: none; }
+#breadcrumbs ul li:last-child a { background: none; font-size: 1.4em; padding-left: 0; }
+
+#content { padding: 1em; }
+#confirm { padding: 1em; }
+#confirm button { float: right; margin-top: 1em; margin-left: 1em; }
+
+
+/* Styles for basic forms
+-----------------------------------------------------------*/
+
+fieldset { border: 1px solid #ddd; padding: 0 1.4em 1.4em 1.4em; margin: 0 0 1.5em 0; }
+
+legend { font-size: 1.2em; font-weight: bold; }
+
+/* textarea { min-height: 75px; } */
+
+.editor-label { margin: 1em 0 0 0; }
+
+.editor-field { margin: 0.5em 0 0 0; }
+
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error { color: #ff0000; }
+
+.field-validation-valid { display: none; }
+
+.input-validation-error { border: 1px solid #ff0000; background-color: #ffeeee; }
+
+.validation-summary-errors { font-weight: bold; color: #ff0000; }
+
+.validation-summary-valid { display: none; }
+
+/* Styles for Layout
+-----------------------------------------------------------*/
+#footer { position: absolute; bottom: 0px; height: 1.2em; background: black;  color: White; width: 97%; overflow-y: scroll; padding: 0.5em; z-index: 100000; opacity: 0.5; }
+#log { font-weight: bold; font-family: Courier New; font-size: 0.9em; }
+
+.version-footer {float: left; height: 12em;  margin-left: 900px; color: #777; z-index: 0; font-size: 8pt; padding: 4em; white-space: nowrap; }

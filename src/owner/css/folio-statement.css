@@ -1,0 +1,232 @@
+﻿/* for folio statements: owner, supplier, sale, tenant etc. */
+
+	.statement-report  .statement-wrap {
+		/*
+		width: 555pt;
+		padding: 5pt;
+		*/
+		box-sizing: border-box;
+		font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+		font-size: 8pt;
+		line-height: 10pt;
+
+		margin: 18pt 18pt;
+	}
+	.statement-report  .statement-wrap * {
+		box-sizing: border-box;
+		padding:  0;
+		margin: 0;
+	}
+
+	.statement-report  .statement-wrap p {
+		padding: 0 0 4pt 0;
+	}
+
+	.statement-report  .statement-wrap .summary {
+
+	}
+	.statement-report  .statement-wrap .summary:after {
+		visibility: hidden;
+		display: block;
+		font-size: 0;
+		content: " ";
+		clear: both;
+		height: 0;
+	}
+	.statement-report  .statement-wrap .summary .l {
+		float: left;
+	}
+
+	.statement-report  .statement-wrap .summary .l .statement-to {
+		padding: 20pt 10pt 47pt 65pt;
+		font-size: 10pt;
+		line-height: 11pt;
+	}
+
+	.statement-report  .statement-wrap table th {
+		padding: 2pt 0;
+	}
+
+	.statement-report  .statement-wrap .row-header td {
+		font-weight: bold;
+	}
+
+	.statement-report  .statement-wrap .summary {
+		clear: both;
+		font-size: 10pt;
+	}
+
+	.statement-report  .statement-wrap .summary .r {
+		float: right;
+	}
+
+	.statement-report  .statement-wrap .summary table {
+		width: 100%;
+		margin 0;
+	}
+
+	.statement-report  .statement-wrap .summary table th {
+
+	    text-align: left;
+	    color: white;
+	    padding: 5px 11px;
+	}
+
+	.statement-report  .statement-wrap .summary .row-header td {
+		padding: 6pt 0 0 8px;
+    	
+	}
+
+	.statement-report  .statement-wrap .summary .row-detail td {
+		padding: 2pt 0 0 0;
+    	font-size: 8pt;
+	}
+
+	.statement-report  .statement-wrap .summary .row-detail-extra td {
+		padding: 2pt 0 0 0;
+	}
+
+	.statement-report  .statement-wrap .summary table .row-header td {
+		font-weight: bold;
+	}
+
+	.statement-report  .statement-wrap .summary .r .statement-from {
+		text-align: right;
+		font-weight: bold;
+	}
+
+	.statement-report  .statement-wrap .summary .r .statement-from p {
+		padding: 0 0 4pt 0;
+	}
+
+
+	.statement-report  .statement-wrap .summary .r .tax-invoice {
+		font-size: 8pt;
+		text-align: right;
+	}
+
+	.statement-report  .statement-wrap .summary .r .tax-invoice p {
+		
+		font-size: 8pt;
+	}
+	.statement-report  .statement-wrap .summary .r .tax-invoice p:first-child {
+		
+		font-size: 12pt;
+	}
+
+
+	.statement-report  .statement-wrap .summary .r .figure {
+
+	    font-weight: bold;
+	    margin: 2pt 0;
+	}
+
+
+	.statement-report   table.figure tr{
+		border-top: solid 1px white;
+	}
+
+	.statement-report   table.figure td {
+		padding: 11pt !important;
+	    font-size: 11pt;
+	    color: white;
+	}
+
+	.statement-report   table.figure td.align-right {
+		padding-left: 0 !important;
+	}
+
+	.statement-report  .figure .result {
+
+		white-space: nowrap;
+	}
+
+
+	.statement-report  .statement-wrap .statement-detail {
+		padding: 20pt 0;
+	}
+
+	.statement-report  .statement-wrap .statement-detail table th {
+		border-bottom: solid 1px black;
+		text-align: left;
+	}
+
+	.statement-report  .statement-wrap .statement-detail table th.nowrap {
+		white-space: nowrap;
+	}
+
+	.statement-report  .statement-wrap .statement-detail .row-header td {
+		padding: 6pt 0 0 0;
+	}
+
+	.statement-report  .statement-wrap .statement-detail .row-detail td {
+		padding-top: 4pt;
+	}
+
+	.statement-report  .statement-wrap .statement-detail tfoot td.align-right {
+		border-top: 1px solid #000;
+	}
+
+	.statement-report  .statement-wrap .statement-detail .row-detail-extra td {
+		padding-top: 2pt;
+		color: #777;
+	}
+
+	.statement-report  .statement-wrap .statement-detail table .row-header td {
+		font-weight: bold;
+	}
+
+	.statement-report  .statement-wrap .statement-detail table .row-header td.normal {
+		font-weight: normal;
+	}
+
+	.statement-report  .statement-wrap .statement-detail table {
+		width: 100%;
+	}
+
+	.statement-report  .statement-wrap table .row-detail td:first-child {
+		padding-left: 12pt;
+
+	}
+	.statement-report  .statement-wrap table .row-detail-extra td:first-child {
+		padding-left: 20pt;
+		color: #777;
+	}
+
+	.statement-report  .align-right {
+		text-align: right !important;
+	}
+
+	.statement-report   table td.align-right {
+		padding-left: 10pt;
+	}
+
+	.statement-report  .logo-left {
+		float: left;
+	}
+
+	.statement-report  .logo-right {
+		float: right;
+	}
+
+	.statement-report  .address-left {
+		float: left;
+		text-align: left;
+	}
+
+	.statement-report  .address-right {
+		float: right;
+		text-align: right;
+	}
+
+	.statement-report  .agency-header {
+		padding: 30px 0 0 0;
+		clear: both;
+	}
+
+	.statement-report  .agency-header .title-text {
+		font-size: 18pt;
+	    line-height: 18pt;
+        font-weight: bold;
+	}
+}

@@ -1,0 +1,251 @@
+/* for page print*/
+@page {
+  size: A4;
+  margin: 63pt 42pt 50pt 42pt;
+  orphans:3;
+  widows:1;
+  font-family:sans-serif,Serif,Georgia;
+}
+
+body {margin:0pt; margin-top:-5pt; padding:0pt; }
+
+.reportCompanyLogo {
+	width:22pt;
+	height:22pt;
+	position:absolute;
+	top:10pt;
+	right:8pt;
+}
+
+/* for accout type report*/
+	.accountReport {
+   	 	margin-right:3pt;
+   	 	margin-left:3pt;
+   	 	font-size:8pt;
+	}
+	
+/* Head */	
+    .accountReport .title {
+        font-size: 12pt;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom:1pt;
+        padding-top:0pt;
+    }
+
+    .accountReport .subtitle {
+        text-align: center;
+        padding-bottom:2pt;
+    }
+
+	.accountReport .ledger-balance{
+		padding-top:5pt;
+		margin-left:200pt;
+		padding-left: 150pt;
+		text-align:center;
+	}
+
+    .accountReport .reportHeader {
+        text-align: right;
+        font-weight: bold;
+        margin-top: 20pt;
+        padding-top: 5pt;
+        padding-bottom:0pt;
+        border-bottom: 1px solid grey;
+    }
+    
+    .accountReport .reportHeader .groupTitle {
+    	padding-top:5px;
+		font-size: 15px;
+    }
+    
+    .accountReport .headerstring {
+            text-align: left;
+    }  
+    
+    .accountReport .center {
+            text-align: center;
+    }   
+    
+    .accountReport .sectionTitle {
+        text-align: left;
+        font-weight: bold;
+        font-size: 12pt;
+        }
+
+    .accountReport sectionTitleFirst {
+        text-align: left;
+        font-weight: bold;
+        font-size:12pt;
+        }
+
+    .accountReport .sectionTable {
+        margin-top: 5pt;
+        margin-bottom:5pt;    
+        }    
+    
+/* Total*/
+  .accountReport .subtotal {
+        padding-top: 4pt;
+        border-top: 1px solid grey;
+        font-weight: bold;
+        text-align: right;
+    }
+
+  .accountReport .total {
+        padding-top: 4pt;
+        border-top: 1px solid grey;
+        font-weight: bold;
+        text-align: right;
+    }
+
+/* Data */
+    .accountReport table {
+    	padding-top: 10pt;
+    	margin-top: 10pt;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 8pt;
+    }
+
+    .accountReport .valign-top {
+         vertical-align: top;
+     }
+
+    .accountReport .index-col {
+        width: 4em;
+    }
+
+    .accountReport .small-col {
+    	width: 30pt;
+/*    	margin-left:5pt;
+    	margin-right:5pt;
+    	max-width:4em;
+  		min-width:2em; */
+    }
+
+    .accountReport .label-col {
+        text-align: right;
+        padding-right:5px;
+    }
+
+
+    .accountReport .num-col {
+        text-align: right;
+        width:7em;
+    }
+
+    .accountReport .date-col {
+        width:6em;
+    }
+
+    .accountReport .account-number-col {
+        width:11em;
+    }
+
+    .accountReport .account-bsb-col {
+        width:10em;
+    }
+
+    .accountReport .eft-amount-col {
+        text-align: right;
+        width:8em;
+    }
+    .accountReport .type-col {
+        width:45pt;
+    }
+
+    .accountReport .type-method-col {
+        width:60pt;
+    }
+ 
+    .accountReport .text-col {
+    	padding-left: 1pt;
+    	padding-right: 3pt;
+    	text-align: left;
+	}
+
+    .accountReport th {
+   	 	page-break-after:avoid;
+        text-align: left;
+        border-bottom: 1px solid grey;
+    }
+
+    .accountReport tr.detail_important {
+    	font-weight: bold;
+    }
+
+    .accountReport tr.detail td.detail {
+        padding-left: 2pt;
+    }
+
+	.accountReport tr.extra-info-row {
+        padding-top: 10pt;
+        padding-bottom: 10pt;
+        font-weight: bold;
+        text-align:	center;
+    }  
+
+ /* Reconciliation Report*/
+	  .accountReport .bankReconciliation .reportHeader td
+	 {
+	 	padding-top: 37pt;
+	 }
+      .accountReport .signature {
+	    display: float;
+	    position: relative;
+	    top: 200pt;
+        margin: 2em;
+        display: inline-block;
+     }
+
+     .accountReport .signature .field {
+        border-bottom: 1px solid grey;
+        padding-top: 1em;
+        padding-left: 1em;
+        margin-right:3em;
+        width: 12em;
+        font-size: 1.2em;
+        display:inline-block;
+     }
+
+      .accountReport .indent-long {
+     	padding-left: 3em !important;
+      }
+     
+ /* Footer */
+      .accountReport  .footer{
+        margin-right:10pt;
+   	 	margin-left:10pt;
+   	 	margin-top:20pt;
+  	 	border-top: 1px solid grey;   
+   	 	width:98%;	
+   	 	display:inline-table;
+		line-height: 15px;	
+   	 	page-break-inside: avoid;
+   	 	page-break-before: avoid;  	 	
+        }
+        
+       .accountReport  .footer div{
+		margin-top:0pt;
+		margin-bottom:0pt;
+		   	 	width:100%;
+        display:table-row;
+        }
+        
+        
+      .accountReport  .footerLeft{
+      	text-align: left;
+      	float:left;
+      	display:table-cell; 
+
+      }
+      
+      .accountReport  .footerRight{
+      	text-align: right;
+      	float:right;
+      	display:table-cell; 
+      }
+
+

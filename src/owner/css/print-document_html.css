@@ -1,0 +1,318 @@
+/* for pdf page print*/
+@page {
+  size: A4;
+  margin: 30pt 10pt 30pt 10pt;
+  orphans:3;
+  widows:1;
+  font-family:"Helvetica Neue", Helvetica,Arial, sans-serif, Serif, Georgia, "Times New Roman";
+}
+
+body {
+    margin:2pt;
+    padding:0;
+    font-family: "Helvetica Neue", Helvetica,Arial, sans-serif, Serif, Georgia, "Times New Roman";
+
+}
+
+.reportCompanyLogo {
+	width:22pt;
+	height:22pt;
+	position:absolute;
+	top:10pt;
+	right:8pt;
+}
+
+/* for report*/
+	.printDocument {
+   	 	margin-right:15pt;
+   	 	margin-left:15pt;
+   	 	margin-top:60pt;
+   	 	margin-bottom:20pt;
+   	 	font-size:8pt;
+	}
+	
+/* Head */	
+   .printDocument .receipt-head-section {
+      margin-top:10mm;
+      margin-bottom:5mm;
+    }    
+
+   .printDocument .agent-logo {
+      width: 60pt;
+      height: 20pt;
+      border: none;
+      outline : none;
+   }   
+
+    .printDocument .document-title {
+      margin-top:25pt;
+      margin-left:0;
+      margin-bottom:3pt;
+    }    
+
+    .printDocument .title {
+        font-size: 12pt;
+        font-weight: bold;
+        text-align: right;
+        margin-bottom:5pt;
+    }
+
+    .printDocument .subtitle-bylaw {
+        text-align: left;
+        font-size: 11px;
+        padding-top:7pt;
+    }
+
+    .PrintDocument .total-info-line{
+        font-weight: bold;
+        margin-top: 15pt;
+        padding-top: 10pt;
+        padding-bottom:3pt;
+        margin-bottom: 5pt;
+	}
+
+    .printDocument .top-line {
+        border-top: 1px solid;
+        margin-top: -12pt;
+        padding-top: 5pt;
+    }
+
+    .printDocument .last-top-line {
+        border-top: 1px solid;
+        margin-top: -8pt;
+        padding-top: 10pt;
+    }
+
+    .printDocument .top-line-half {
+        border-top: 1px solid;
+        margin-top: -8pt;
+        padding-top: 10pt;
+    }
+    .printDocument .top-line-half-noline {
+        margin-top: -8pt;
+        padding-top: 10pt;
+    }
+
+    .printDocument .under-line {
+        border-bottom: 1px solid;
+    }
+
+    .printDocument .between-line {
+      	border-bottom: 1px solid silver;
+    	margin-bottom: 10px;
+		
+    }
+    .printDocument .between-line:last-child {
+        border: none;
+    }
+    .printDocument .padding-top-to-line {
+        padding-top: 7px;
+    }    
+    .printDocument .section-title {
+        text-align: left;
+        font-weight: bold;
+        font-size: 10pt;
+        padding-top:20px;
+        margin-bottom:0px;
+        display:inline-block;
+    }
+
+    .printDocument .subsection-title {
+        text-align: left;
+        font-weight: bold;
+        font-size: 10pt;
+        margin-top:8pt;
+        padding-bottom:5pt;
+    }
+    .printDocument .subsection-title-less-emphasis {
+        text-align: left;
+        margin-top:8pt;
+        padding-bottom:0;
+    }
+
+
+    .printDocument .info-value {
+        text-align: left;
+        padding-top: 2pt;
+        padding-left: 15pt;
+        padding-bottom:2pt;
+    }
+
+    .printDocument .info-title {
+        text-align: left;
+        width: 70pt;
+        padding-top: 2pt;
+        padding-bottom:2pt;
+    }
+
+    .printDocument .titleinfo-value {
+        padding-left:2pt;
+        padding-right:2pt;
+    }
+
+    .printDocument .left-padding {
+        padding-left:6pt;
+    }
+    .printDocument .right-padding {
+        padding-right:2pt;
+    }
+
+    .printDocument .text-left {
+            text-align: left;
+    }  
+ 
+    .printDocument .text-right {
+            text-align: right;
+    }    
+    .printDocument .center {
+            text-align: center;
+    }   
+       
+    .printDocument .agent-info {
+            margin-right:1pt;
+            margin-top: -20pt;
+            height:163px;
+    }  
+    
+    .printDocument .textarea-value {
+            border: 1px solid;
+	        margin-top: 3pt;
+	        margin-left: 15pt;
+	        padding: 8pt;	          
+      }       
+
+    .printDocument .sectionTitle {
+
+    }
+        
+    .printDocument .sectionTable {
+        margin-top: 10pt;
+        margin-bottom:10pt;    
+    }  
+
+    .printDocument .same-row {
+    	display:inline-block;
+    } 
+    
+/* Total*/
+  .printDocument .subtotal {
+        padding-top: 4pt;
+        border-top: 1pt solid grey;
+        font-weight: bold;
+        text-align: right;
+    }
+
+  .printDocument .total {
+        padding-top: 4pt;
+        border-top: 2pt solid black;
+        font-weight: bold;
+        text-align: right;
+    }
+
+/* Data */
+    .printDocument  #reportDiv table {
+        width: 98%;
+        margin-left: auto;
+        margin-right: auto;
+        vertical-align: center;
+        font-size: 8pt;
+    }
+    
+    .printDocument table {
+        width: 98%;
+        margin-left: auto;
+        margin-right: auto;
+        vertical-align: center;
+        font-size: 8pt;
+    }
+
+    .printDocument .date-col {
+        width: 60pt;
+    }
+
+    .printDocument .index-col {
+        width: 50pt;
+    }
+
+    .printDocument .num-col {
+        text-align: right;
+        display: inline-block;
+        width:9em;
+    }
+    
+    .printDocument .date-col {
+        width:9em;
+    }
+    
+    .printDocument .type-col {
+        width:11em;
+    }
+    
+    .printDocument th {
+   	 	page-break-after:avoid;
+        text-align: left;
+        border-bottom: 2pt solid #808080;
+    }
+
+    .printDocument tr.detail_important {
+    	font-weight: bold;
+    }
+
+    .printDocument tr.detail td.detail {
+        padding-left: 2pt;
+    }
+
+    .printDocument .agent-info-value {
+    	 padding:0;
+    	 line-height:12pt;
+    }
+     
+ /* Header */
+ 
+      .header{
+        margin-right:10pt;
+   	 	margin-left:10pt;
+   	 	margin-top:20pt;
+   	 	 border-top: 1pt solid #c0c0c0;   
+   	 	 		   	 	width:98%;	
+   	 	 		   	 	display:inline-table;
+   	 	 		   	 			line-height: 15px;	
+   	 	page-break-inside: avoid;
+   	 	page-break-before: avoid;  	 	
+        }
+        
+       .printDocument  .footer div{
+		margin-top:0pt;
+		margin-bottom:0pt;
+		   	 	width:100%;
+        display:table-row;
+        }
+        
+        
+      .printDocument  .footerLeft{
+      	text-align: left;
+      	float:left;
+      	display:table-cell; 
+
+      }
+      
+      .printDocument  .footerRight{
+      	text-align: right;
+      	float:right;
+      	display:table-cell; 
+      }
+
+    	.printDocument  .text-bold{
+			font-weight:bold;
+      }
+
+
+    .printDocument .statement-fix-width-value-extra {
+        width: 100pt;
+        margin-left:7pt;
+        margin-right:3pt;
+        margin-bottom:1pt;
+        display: inline-block;
+        text-align: left;
+    }
+

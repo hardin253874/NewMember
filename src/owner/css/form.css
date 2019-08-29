@@ -1,0 +1,183 @@
+﻿
+form hr {
+    border: 0px;
+    border-bottom: 1px solid #CCCCCC;
+    height: 1px;
+    float: none;
+    clear: both;
+    padding: 4px;
+}
+
+.form-header {
+    font-size: 14pt;
+    font-weight: bold;
+    color: #555;
+}
+
+.form-line, .form-header {
+    margin: 0.3em 0 0.3em 0;
+    float: none;
+    clear: both;
+}
+.form-line label {
+    display: block;
+    color: #555;
+    margin-bottom: 2px;
+}
+.form-line {
+    clear: both;
+    float: left;
+    
+}
+.form-line > div {
+    display: inline-block;
+    float: left;
+    padding-right: 1em;
+}
+
+input:required, input:invalid {
+  /* Remove default FF styles */
+  -moz-box-shadow: none;
+}
+
+.cancelForm { vertical-align: middle; } 
+
+.required label { font-weight: bold; }
+
+form { padding: 1em; }
+
+input:disabled, input:disabled:hover {
+    background: #eee;
+}
+
+input:invalid:not(:required) {
+    box-shadow: 0px 0px 3px 1px rgba(204, 0, 0, 0.5) inset;
+}
+
+input:required:focus:invalid {
+    box-shadow: 0px 0px 3px 1px rgba(204, 0, 0, 0.5) inset;
+}
+
+
+div.w-1 .k-widget, div.w-1 select {
+    width: 3em;
+}
+div.w-2 .k-widget, div.w-2 select {
+    width: 9em;
+}
+div.w-3 .k-widget, div.w-3 select {
+    width: 14em;
+}
+div.w-4 .k-widget, div.w-4 select {
+    width: 18em;
+}
+div.w-5 .k-widget, div.w-5 select {
+    width: 23em;
+}
+div.w-6 .k-widget, div.w-6 select {
+    width: 28em;
+}
+div.w-7 .k-widget, div.w-7 select {
+    width: 33em;
+}
+div.w-8 .k-widget, div.w-8 select {
+    width: 38em;
+}
+div.w-9 .k-widget, div.w-9 select {
+    width: 43em;
+}
+div.w-10 .k-widget, div.w-10 select {
+    width: 48em;
+}
+
+input.w-1, textarea.w-1, form.w-1, div.w-1 input {
+    width: 4em;
+}
+input.w-2, textarea.w-2, form.w-2, div.w-2 input {
+    width: 9em;
+}
+input.w-3, textarea.w-3, form.w-3, div.w-3 input {
+    width: 14em;
+}
+input.w-4, textarea.w-4, form.w-4, div.w-4 input {
+    width: 19em;
+}
+input.w-5, textarea.w-5, form.w-5, div.w-5 input {
+    width: 24em;
+}
+input.w-6, textarea.w-6, form.w-6, div.w-6 input {
+    width: 29em;
+}
+input.w-7, textarea.w-7, form.w-7, div.w-7 input {
+    width: 34em;
+}
+input.w-8, textarea.w-8, form.w-8, div.w-8 input {
+    width: 39em;
+}
+input.w-9, textarea.w-9, form.w-9, div.w-9 input {
+    width: 44em;
+}
+input.w-10, textarea.w-10, form.w-10, div.w-10 input  {
+    width: 49em;
+}
+.form-line .mr-1 input {
+    margin-right: 1em;
+}
+.form-line .mr-2 input {
+    margin-right: 2em;
+}
+.form-line .mr-4 input {
+    margin-right: 4em;
+}
+.item-deleted {
+    text-decoration: line-through;
+    
+}
+
+span.w-n1 {
+    display: inline-block;
+    width: 1em;
+}
+span.w-n2 {
+    display: inline-block;
+    width: 3em;
+}
+span.w-n3 {
+    display: inline-block;
+    width: 5em;
+}
+span.w-n4 {
+    display: inline-block;
+    width: 7em;
+}
+span.w-n5 {
+    display: inline-block;
+    width: 9em;
+}
+.item-deleted a { color: rgb(231, 91, 91) !important; }
+
+.k-numerictextbox .k-formatted-value {
+
+    text-align: right;
+}
+
+select {
+    -webkit-appearance: none;
+}
+
+.amount-col {
+	text-align: right !important;
+}
+
+.grid-footer {
+    background-color: rgb(227, 227, 227);
+    border-bottom: 1px solid #C5C5C5;
+    border-left: 1px solid #C5C5C5;
+    border-right: 1px solid #C5C5C5;
+    padding: 8px;
+}
+
+.k-toolbar button {
+	padding-top: 0;
+	padding-bottom: 0;
+}

@@ -1,0 +1,569 @@
+/* for pdf page print*/
+@page {
+  size: A4;
+  margin: 30pt 10pt 30pt 10pt;
+  orphans:3;
+  widows:1;
+  font-family: "Helvetica Neue", Helvetica,Arial, sans-serif, Serif, Georgia, "Times New Roman";
+}
+
+body {margin:0; padding:0; }
+
+.reportCompanyLogo {
+	width:22pt;
+	height:22pt;
+	position:absolute;
+	top:10pt;
+	right:8pt;
+}
+
+/* for report*/
+	.printDocument {
+   	 	margin-right:7pt;
+   	 	margin-left:7pt;
+   	 	margin-top:20pt;
+   	 	margin-bottom:20pt;
+   	 	font-size:8pt;
+      background-color:white; /* to fix loading display issue */
+	}
+
+	.mergedLetter.printDocument {
+	/* wider margins for printed letters */
+		margin-left: 2.5cm;
+		margin-right:2.5cm;
+	}
+	
+/* Head */	
+    .printDocument .document-title {
+      margin-top:70pt;
+      margin-left:20pt;
+      margin-bottom:3pt;
+    }    
+    .printDocument .statement-document-title {
+      margin-top: 37pt;
+      margin-left:20pt;
+      margin-bottom:3pt;
+    }
+
+    .printDocument .statement-document-title h1{
+        font-size:16pt;
+    }
+
+    .printDocument .acoount-statement   {
+      margin-right:10pt;
+      line-height:12pt;
+    }  
+
+    .printDocument .second-header   {
+      margin-top:20pt;
+      margin-bottom:15pt;
+    }  
+
+    .printDocument .title {
+        font-size: 12pt;
+        font-weight: bold;
+        text-align: right;
+        margin-bottom:5pt;
+        padding-top:20pt;
+    }
+
+    .printDocument .subtitle-bylaw {
+        font-size: 11pt;
+        text-align: left;
+        padding-left:20pt;
+        margin-bottom:10pt;
+    }
+
+    .printDocument .statement-head-section {
+    	margin-top: -30pt;
+        padding-right:10pt;
+    }
+
+    .printDocument .top-line {
+        margin-top: 15pt;
+        padding-top: 10pt;
+        border-top: 1px solid grey;
+    }
+    .printDocument .under-line {
+        border-bottom: 1px solid grey;
+    }
+
+    .printDocument .section-title {
+        text-align: left;
+        font-weight: bold;
+        font-size: 12pt;
+        padding-bottom:7pt;
+    }
+
+    .printDocument .subsection-title {
+        text-align: left;
+        font-weight: bold;
+        font-size: 10pt;
+        margin-top:8pt;
+        padding-bottom:5pt;
+    }
+    .printDocument .subsection-title-less-emphasis {
+        text-align: left;
+        margin-top:8pt;
+        padding-bottom:5pt;
+    }
+
+    .printDocument .statement-label {
+        text-align: left;
+        display: inline-block;
+    }
+
+    .printDocument .statement-fix-width-value {
+		width: 50pt;
+    	margin-left:7pt;
+    	margin-right:3pt;
+    	margin-bottom:1pt;
+    	display: inline-block;
+    	text-align: left;
+    }
+
+    .printDocument .info-value {
+        text-align: left;
+        padding-top: 2pt;
+        padding-left: 15pt;
+        padding-bottom:2pt;
+    }
+
+    .printDocument .info-title {
+        text-align: left;
+        width: 70pt;
+        padding-top: 2pt;
+        padding-bottom:2pt;
+    }
+
+    .printDocument .titleinfo-value {
+        padding:2pt;
+    }
+
+    .printDocument .left-padding {
+        padding-left:6pt;
+    }
+    .printDocument .right-padding {
+        padding-right:2pt;
+    }
+
+    .printDocument .text-left {
+            text-align: left;
+    }  
+ 
+    .printDocument .text-right {
+            text-align: right;
+    }    
+    .printDocument .center {
+            text-align: center;
+    }   
+    
+    .printDocument .workorder-supplier {
+            margin-left: 60pt;
+    }    
+    .printDocument .workorder-agent {
+            margin-right:1pt;
+    }  
+    
+    .printDocument .textarea-value {
+            border: 1px solid grey;
+	        margin-top: 3pt;
+	        margin-left: 15pt;
+	        padding: 8pt;	          
+      }
+    textarea.disabled {
+        overflow-y: auto;
+	    background: transparent;
+	    border: none;
+	    width: 94%;
+	    min-height:200px;
+	    font-size:8pt;
+    }
+
+    .printDocument .sectionTitle {
+        text-align: left;
+        font-weight: bold;
+        font-size:10pt;
+    }
+        
+    .printDocument .sectionTable {
+        margin-top: 10pt;
+        margin-bottom:10pt;    
+    }  
+
+    .printDocument .same-row {
+    	display:inline-block;
+    }
+
+    .printDocument .property-address-row {
+        max-width: 30em;
+        word-wrap: break-word;
+    }
+    
+/* Total*/
+  .printDocument .subtotal {
+        padding-top: 4pt;
+        border-top: 1px solid grey;
+        font-weight: bold;
+        text-align: right;
+    }
+
+    .printDocument .subtotal-data {
+        padding-top: 4pt;
+        /*border-top: 1px solid grey;
+        border-bottom: 1px solid grey;*/
+        position: relative;
+        line-height: 16px;
+    }
+
+    .printDocument .subtotal-data:after, .printDocument  .total-data:after  {
+		  content:""; 
+		  background: grey; 
+		  position: absolute; 
+		  bottom: 0; 
+		  right: 0; 
+		  height: 1px; 
+		  width: 70%;
+    }
+
+    .printDocument .subtotal-data:before, .printDocument  .total-data:before {
+		  content:""; 
+		  background: grey; 
+		  position: absolute; 
+		  top: 0; 
+		  right: 0; 
+		  height: 1px; 
+		  width: 70%;
+    }
+
+    .printDocument  .total-data:after  {
+		  content:""; 
+		  background: grey; 
+		  position: absolute; 
+		  bottom: 0; 
+		  right: 0; 
+		  height: 2px; 
+		  width: 70%;
+    }
+
+    .printDocument  .total-data:before {
+		  content:""; 
+		  background: grey; 
+		  position: absolute; 
+		  top: 0; 
+		  right: 0; 
+		  height: 2px; 
+		  width: 70%;
+    }
+
+    .printDocument .total-data {
+        padding-top: 4pt;
+        position: relative;
+        font-weight: bold;
+        line-height: 20px;
+    }
+
+    .printDocument .folio-total-data {
+        padding-top: 4pt;
+        position: relative;
+        line-height: 20px;
+        font-weight: bold;
+    }
+
+    .printDocument  .folio-total-data:after  {
+		  content:""; 
+		  background: #505050; 
+		  position: absolute; 
+		  bottom: 0; 
+		  right: 0; 
+		  height: 2px; 
+		  width: 70%;
+    }
+
+    .printDocument  .folio-total-data:before {
+		  content:""; 
+		  background: #505050; 
+		  position: absolute; 
+		  top: 0; 
+		  right: 0; 
+		  height: 2px; 
+		  width: 70%;
+    }
+
+  .printDocument .total {
+        padding-top: 4pt;
+        border-top: 1px solid grey;
+        font-weight: bold;
+        text-align: right;
+    }
+
+/* Data */
+    .printDocument  #reportDiv table {
+        width: 98%;
+        margin-left: auto;
+        margin-right: auto;
+        vertical-align: center;
+        font-size: 8pt;
+    }
+    
+    .printDocument table {
+        width: 98%;
+        margin-left: auto;
+        margin-right: auto;
+        vertical-align: center;
+        font-size: 8pt;
+    }
+
+    .printDocument .date-col {
+        width: 60pt;
+        text-align:left;
+        padding-left:2pt;
+    }
+    
+    .printDocument .date-col-data {
+        width: 60pt;
+        text-align:right;
+        padding-right:17pt;
+    }
+    
+    .printDocument .index-col {
+        width: 50pt;
+    }
+
+    .printDocument .ref-col {
+        width: 30pt;
+    }
+
+    .printDocument .num-col {
+        text-align: right;
+        width:9em;
+    }    
+
+    .printDocument .small-number-col {
+        text-align: right;
+        width:5em;
+    }
+
+    .printDocument .small-col {
+        text-align: center;
+        width:28pt;
+    }
+       
+    .printDocument .type-col {
+        width:11em;
+    }
+    
+    .printDocument th {
+   	 	page-break-after:avoid;
+        text-align: left;
+        border-bottom: 1px solid grey;
+    }
+
+    #one-line-table .label-col {
+        padding-left:5px;
+        text-align: left;
+    }
+
+    #one-line-table .value-col {
+        text-align: right;
+    }
+
+    .printDocument tr.detail_important {
+    	font-weight: bold;
+    }
+
+    .printDocument tr.detail td.detail {
+        padding-left: 2pt;
+    }
+
+     .printDocument .agent-info-right {
+    	 padding-right:5pt;
+    }
+
+     .printDocument .agent-info-left {
+     margin-top:10pt;
+    	 padding-left:15pt;
+    }
+
+   .printDocument .agent-info-value {
+    	 padding:0;
+    	 padding-bottom:1pt;
+    	 line-height:12pt;
+    }
+     
+ /* Header */
+ 
+      .header{
+        font-family: "Helvetica Neue", Helvetica,Arial, sans-serif, Serif, Georgia, "Times New Roman";
+        margin-right:10pt;
+   	 	margin-left:10pt;
+   	 	margin-top:20pt;
+   	 	 border-top: 1px solid grey;   
+   	 	 		   	 	width:98%;	
+   	 	 		   	 	display:inline-table;
+   	 	 		   	 			line-height: 15px;	
+   	 	page-break-inside: avoid;
+   	 	page-break-before: avoid;  	 	
+        }
+        
+       .printDocument  .footer div{
+		margin-top:0pt;
+		margin-bottom:0pt;
+		   	 	width:100%;
+        display:table-row;
+        }
+        
+        
+      .printDocument  .footerLeft{
+      	text-align: left;
+      	float:left;
+      	display:table-cell; 
+
+      }
+      
+      .printDocument  .footerRight{
+      	text-align: right;
+      	float:right;
+      	display:table-cell; 
+      }
+      
+      /* CSS for table layout */
+      .table {
+      	display:table;
+      	aglin:center;
+      }
+      
+      .row {
+      	display:table-row;
+      }
+      
+      .cell {
+      	display:table-cell;
+      }
+      
+      div .border {
+      	border: 1px solid grey;
+      	text-align:center;
+      }
+      
+      .printDocument .statement-cell-fixed-width {
+      	width:30%;
+      	padding-right:1%;
+      	font-size:10pt;
+      }
+      
+      .printDocument .statement-rent-information {
+      	font-size:9pt;
+      	text-align:center;
+      }
+
+	.printDocument tbody tr:first-child td {
+		padding-top: 5px;
+	}
+
+	#one-line-table tr:first-child td {
+		padding-top: 1px;
+		padding-bottom:2px;
+	}
+
+	.printDocument .padding-top{
+		padding-top: 6px;
+	}
+	
+	.printDocument .padding-bottom{
+		padding-bottom: 6px;
+	}
+	
+	.printDocument .withheld-summary{
+		padding-top: 15px;
+	}
+	
+	.printDocument .withheld-duebill-detail{
+		padding-left: 20px;
+	}
+
+    #fr-page-break {
+        page-break-after: always !important;
+    }
+
+	/* Inspection report PDF photo */
+
+	.area-pages .inspection-pdf-photo {
+		background-repeat: no-repeat; 
+		background-position:center; 
+		background-size: cover;
+		height:81mm;
+		width:91mm;
+	}
+
+    table.fr-none-border-style td,
+    table.fr-none-border-style th {
+        border-style: none !important;
+    }
+
+    table td.fr-none-border,
+    table th.fr-none-border {
+        border-width: 0px !important;
+    }
+
+/*
+    the print style change for table page breaks.
+    1) make sure the page-break-inside for table is auto not always (if no contains, don't break in new page)
+    2) make sure avoid page-break-after for table header
+    3) make sure avoid page-break-inside for table row and page-break-afer is auto not always
+
+    update:
+    PME-1337 user doesn't like table header group style in print mode.
+*/
+@media print {
+    .inspection-report table{
+        page-break-inside:auto;
+    }
+
+    .inspection-report thead {
+        display: inline !important;
+        page-break-after: avoid;
+    }
+
+    .inspection-report tr {
+        page-break-inside:avoid;
+        page-break-after: auto;
+    }
+
+    .inspection-report td{
+        page-break-inside:avoid !important;
+    }
+
+    #fr-page-break {
+        page-break-after: always !important;
+    }
+}
+
+@media screen {
+    .inspection-report td{
+        page-break-inside:avoid !important;
+    }
+
+    .inspection-report thead {
+        display: inline !important;
+        page-break-after: avoid;
+    }
+}
+
+/* Hide it to enable color, to fix a bootstrap issue */
+/*@media screen {*/
+	/*div:not(#reportDiv)[style*="page-break-after: always"]:before {*/
+		/*position: relative;*/
+		/*display:block;*/
+        /**/
+		/*line-height:10px;*/
+		/*padding: 3px 0;*/
+		/*margin:32px 0;*/
+		/*font-size: 9px;*/
+		/*text-align: center;*/
+
+        /*border-top: 1px gray dashed;*/
+        /*border-bottom: 1px gray dashed;*/
+        /*content:  'Page break';*/
+	/*}*/
+/*}*/

@@ -1,0 +1,162 @@
+﻿
+#tools {
+    padding: 0 0 0.5em 0em;
+}
+
+    #tools .k-button {
+        margin-right: 0.5em;
+    }
+
+    #tools .menu {
+        height: 26px;
+        xborder-radius: 5px;
+    }
+
+.toolbar {
+    float: right;
+}
+
+.item-sections {
+    width: 680px;
+}
+
+    /*.item-sections > div {
+        height: 300px;
+    }*/
+
+    .item-sections > h3.ui-state-active {
+    }
+
+    .item-sections > h3 {
+        font-size: 1.05em;
+        border-radius: 0;
+        border-bottom: 1px solid #C5C5C5;
+        margin-bottom: 0.5em;
+    }
+
+        .item-sections > h3.ui-state-active > a {
+            padding-left: 1em;
+        }
+
+        .item-sections > h3.ui-state-active > .ui-icon {
+            display: none;
+        }
+
+    .item-sections > div {
+        padding-left: 1em;
+    }
+
+.top-right-corner {
+    right: 1em;
+    top: 0;
+    position: absolute;
+}
+
+.button-menu li {
+    padding: 0px 2px 5px 5px;
+}
+
+.setting-list li {
+    padding: 6px 0 2px;
+    border-bottom: 1px solid #C5C5C5;
+    vertical-align: bottom;
+}
+
+.setting-title {
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.setting-list li a {
+    display: inline-block;
+    float: right;
+}
+
+.master-detail {
+    height: 100%;
+    width: 100%;
+    border: 1px solid #C5C5C5;
+}
+
+.master-list {
+    height: 100%;
+    float: left;
+    width: 12em;
+    margin-right: 0em;
+    position: relative;
+    border-right: 1px solid #C5C5C5;
+}
+
+    .master-list .md-content button {
+        -moz-border-radius: 0;
+        -webkit-border-radius: 0;
+        border-radius: 0;
+        width: 100%;
+        border-top-width: 0;
+        border-left-width: 0;
+        border-right-width: 0;
+    }
+
+.master-detail .detail-item {
+    height: 100%;
+    float: left;
+    border: 0px solid #C5C5C5;
+    width: 36em;
+}
+
+.master-list .md-content {
+    overflow-y: auto;
+    height: 38em;
+}
+
+.detail-item .md-content {
+    padding: 1em;
+    width: 100%;
+}
+
+.detail-item .md-header {
+    background: url("/css/kendo/textures/highlight.png") repeat-x 0px -258px;
+    background-color: #F0713A;
+    padding: 0.2em;
+    border: 1px solid #F0713A;
+    color: #fff;
+}
+
+.master-detail .md-header {
+    background-image: linear-gradient(bottom, rgb(232,232,232) 14%, rgb(255,255,255) 84%);
+    background-image: -o-linear-gradient(bottom, rgb(232,232,232) 14%, rgb(255,255,255) 84%);
+    background-image: -moz-linear-gradient(bottom, rgb(232,232,232) 14%, rgb(255,255,255) 84%);
+    background-image: -webkit-linear-gradient(bottom, rgb(232,232,232) 14%, rgb(255,255,255) 84%);
+    background-image: -ms-linear-gradient(bottom, rgb(232,232,232) 14%, rgb(255,255,255) 84%);
+    padding: 0.2em;
+    border-bottom: 1px solid #C5C5C5;
+}
+
+    .master-detail .md-header h3 {
+        font-size: 1em;
+        font-weight: bold;
+        padding: 0;
+        margin: 0;
+        text-align: center;
+    }
+
+.master-detail .md-footer {
+    padding: 4px;
+    position: absolute;
+    bottom: 0;
+    width: 90%;
+    left: 4px;
+    border-top: 1px solid #C5C5C5;
+}
+
+.master-detail .item-deleted {
+    text-decoration: line-through !important;
+}
+
+.settings h4 {
+    margin-bottom: 0em;
+}
+
+.settings label .info {
+    font-size: 8pt;
+}
