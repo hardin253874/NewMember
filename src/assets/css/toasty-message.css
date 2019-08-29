@@ -1,0 +1,4 @@
+#toasty .toast.toasty-theme-bootstrap.toasty-type-default {
+    background-image: url('/assets/img/default-icon.png') !important;
+    background-color: #ffffff !important;
+}
